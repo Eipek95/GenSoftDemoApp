@@ -9,5 +9,6 @@ namespace GemSoftDemoApp.Entity.Entities
 {
     public class AppUser:IdentityUser<int>
     {
+        public List<Order>? Orders { get; set; }
     }
 }

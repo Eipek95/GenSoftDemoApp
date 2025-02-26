@@ -16,6 +16,8 @@ namespace GemSoftDemoApp.Business
 
             services.AddScoped<IBrandService, BrandManager>();
             services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<IOrderService, OrderManager>();
+            services.AddScoped<IOrderDetailService, OrderDetailManager>();
             services.Configure<JwtTokenOptions>(configuration.GetSection("TokenOptions"));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IJwtService, JwtService>();
