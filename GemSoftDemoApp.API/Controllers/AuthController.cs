@@ -4,39 +4,27 @@ using GemSoftDemoApp.Dto.UserDtos;
 using GemSoftDemoApp.Entity.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GemSoftDemoApp.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class AuthController(UserManager<AppUser> _userManager,
-        SignInManager<AppUser> _signInManager,
-        IJwtService _jwtService,
-        IMapper _mapper) : ControllerBase
+    public class AuthController(IUserService _userService) : CustomBaseController
     {
 
-        [HttpPost()]
-        public async Task<IActionResult> Login(LoginDto model)
-        {
-            var user = await _userManager.FindByNameAsync(model.Username);
-            if (user == null)
-                return BadRequest("Bu Kullanıcı Adı Sistemde Kayıtlı Değil");
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginDto model) => ActionResultInstance(await _userService.LoginAsync(model));
 
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterDto model) => ActionResultInstance(await _userService.CreateUserAsync(model));
 
-            var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
-            if (!result.Succeeded)
-                return BadRequest("Kullanıcı Adı veya Şifre Hatalı");
-
-
-            var token = await _jwtService.CreateTokenAsync(user);
-            return Ok(token);
-        }
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto model) => ActionResultInstance(await _userService.ChangePassword(model));
 
         [HttpGet()]
-        public async Task<IActionResult> GetUserId()
-        {
-            var user = await _userManager.FindByNameAsync(User.Identity.Name);
-            return Ok(user.Id);
-        }
+        public async Task<IActionResult> GetUserId() => ActionResultInstance(await _userService.GetUserId());
+
+        
     }
 }

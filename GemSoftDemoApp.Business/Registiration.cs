@@ -22,6 +22,8 @@ namespace GemSoftDemoApp.Business
             services.Configure<JwtTokenOptions>(configuration.GetSection("TokenOptions"));
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IRoleService, RoleManager>();
         }
     }
 }

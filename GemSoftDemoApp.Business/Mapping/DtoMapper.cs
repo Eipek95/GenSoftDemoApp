@@ -4,6 +4,7 @@ using GemSoftDemoApp.Dto.CategoryDtos;
 using GemSoftDemoApp.Dto.OrderDetailDtos;
 using GemSoftDemoApp.Dto.OrderDtos;
 using GemSoftDemoApp.Dto.ProductDtos;
+using GemSoftDemoApp.Dto.UserDtos;
 using GemSoftDemoApp.Entity.Entities;
 
 namespace GemSoftDemoApp.API.Mapping
@@ -32,6 +33,9 @@ namespace GemSoftDemoApp.API.Mapping
             CreateMap<Category, CategoryDto>().ReverseMap();
             CreateMap<Category, CreateCategoryDto>().ReverseMap();
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();
+
+            CreateMap<AppUser, RegisterDto>().ReverseMap();
+            CreateMap<AppRole, CreateRoleDto>().ReverseMap();
         }
     }
 }
