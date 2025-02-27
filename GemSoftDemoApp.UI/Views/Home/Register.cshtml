@@ -1,0 +1,53 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "SignUp";
+}
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <h2 class="text-center">Kullanıcı Kayıt</h2>
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert">
+        </div>
+        <form asp-action="Register" asp-controller="Home" method="post">
+            <div class="row mb-3">
+                <label for="UserName" class="col-md-4 col-form-label" asp-for="UserName"></label>
+                <div class="col-md-8">
+                    <input asp-for="UserName" class="form-control">
+                    <span class="text-danger" asp-validation-for="UserName"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="Email" class="col-md-4 col-form-label" asp-for="Email"></label>
+                <div class="col-md-8">
+                    <input asp-for="Email" class="form-control">
+                    <span class="text-danger" asp-validation-for="Email"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="Password" class="col-md-4 col-form-label" asp-for="Password"></label>
+                <div class="col-md-8">
+                    <input asp-for="Password" class="form-control">
+                    <span class="text-danger" asp-validation-for="Password"></span>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="PasswordConfirm" class="col-md-4 col-form-label" asp-for="ConfirmPassword"></label>
+                <div class="col-md-8">
+                    <input asp-for="ConfirmPassword" class="form-control">
+                    <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+                </div>
+            </div>
+            <div class="row mb-3 text-center">
+                <div class="col-md-8 offset-md-4">
+                    <button type="submit" class="btn btn-outline-primary">Kayıt Ol</button>
+                    <a asp-action="Login" asp-controller="Home" class="btn btn-outline-danger">Giriş Yap</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

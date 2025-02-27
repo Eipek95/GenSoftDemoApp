@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GemSoftDemoApp.API.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class RolesController(IRoleService _roleService) : CustomBaseController

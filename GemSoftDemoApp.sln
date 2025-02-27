@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35806.99 d17.13
+VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GemSoftDemoApp.Business", "GemSoftDemoApp.Business\GemSoftDemoApp.Business.csproj", "{C96E1096-B1C7-4312-AEEC-A216B1084DF9}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GemSoftDemoApp.Entity", "GemSoftDemoApp.Entity\GemSoftDemoApp.Entity.csproj", "{6AC9F299-ED22-4D72-A9F4-ABBE93C32C0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GemSoftDemoApp.API", "GemSoftDemoApp.API\GemSoftDemoApp.API.csproj", "{9CF6CDD9-C758-463D-8769-E0D9F5B6A119}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GemSoftDemoApp.UI", "GemSoftDemoApp.UI\GemSoftDemoApp.UI.csproj", "{B6459CD0-4598-4AE8-8DA5-583AA880DD70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9CF6CDD9-C758-463D-8769-E0D9F5B6A119}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CF6CDD9-C758-463D-8769-E0D9F5B6A119}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CF6CDD9-C758-463D-8769-E0D9F5B6A119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6459CD0-4598-4AE8-8DA5-583AA880DD70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6459CD0-4598-4AE8-8DA5-583AA880DD70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6459CD0-4598-4AE8-8DA5-583AA880DD70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6459CD0-4598-4AE8-8DA5-583AA880DD70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

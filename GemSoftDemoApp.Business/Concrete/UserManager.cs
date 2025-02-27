@@ -33,7 +33,7 @@ namespace GemSoftDemoApp.Business.Concrete
                 List<string> errors = new();
 
                 foreach (var error in result.Errors)
-                    errors.Add(error.Description + "/n");
+                    errors.Add(error.Description);
                 return MyResponse<string>.Fail(new ErrorDto(errors, false), 400);
 
             }
@@ -52,7 +52,7 @@ namespace GemSoftDemoApp.Business.Concrete
                 List<string> errors = new();
 
                 foreach (var error in result.Errors)
-                    errors.Add(error.Description + "/n");
+                    errors.Add(error.Description);
 
                 return MyResponse<string>.Fail(new ErrorDto(errors, false), 400);
 

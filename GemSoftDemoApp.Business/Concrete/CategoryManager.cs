@@ -2,12 +2,8 @@
 using GemSoftDemoApp.Business.Abstract;
 using GemSoftDemoApp.DataAccess.Abstract;
 using GemSoftDemoApp.Dto.CategoryDtos;
+using GemSoftDemoApp.Dto.ResponseDtos;
 using GemSoftDemoApp.Entity.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GemSoftDemoApp.Business.Concrete
 {
@@ -19,6 +15,17 @@ namespace GemSoftDemoApp.Business.Concrete
         {
             _categoryRepository = categoryRepository;
             this._mapper = mapper;
+        }
+
+        public async Task<MyResponse<List<CategoryDto>>> TGetAllCategoryWithProducts()
+        {
+            var categories = await _categoryRepository.GetAllCategoryWithProducts();
+            if (!categories.Any())
+                return MyResponse<List<CategoryDto>>.Fail(new ErrorDto("Kategori Bulunamadı", false), 404);
+            var map = _mapper.Map<List<CategoryDto>>(categories);
+            return MyResponse<List<CategoryDto>>.Success(map, 200);
+
+
         }
     }
 }

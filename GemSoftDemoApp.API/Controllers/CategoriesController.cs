@@ -9,22 +9,24 @@ namespace GemSoftDemoApp.API.Controllers
     [Route("api/[controller]/[action]")]
     [ApiController]
     //[Authorize]
-    public class CategoriesController(ICategoryService _brandService) : CustomBaseController
+    public class CategoriesController(ICategoryService _categoryService) : CustomBaseController
     {
         
         [HttpGet]
-        public async Task<IActionResult> GetAll()=> ActionResultInstance(await _brandService.TGetList());
+        public async Task<IActionResult> GetAll()=> ActionResultInstance(await _categoryService.TGetList());
+        [HttpGet]
+        public async Task<IActionResult> GetAllCategoryWithProducts()=> ActionResultInstance(await _categoryService.TGetAllCategoryWithProducts());
 
         [HttpGet]
-        public async Task<IActionResult> GetById(int id) => ActionResultInstance(await _brandService.TGetById(id));
+        public async Task<IActionResult> GetById(int id) => ActionResultInstance(await _categoryService.TGetById(id));
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateCategoryDto brandDto)=> ActionResultInstance(await _brandService.TCreate(brandDto));
+        public async Task<IActionResult> Create(CreateCategoryDto categoryDto)=> ActionResultInstance(await _categoryService.TCreate(categoryDto));
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateCategoryDto updateCategoryDto) => ActionResultInstance(await _brandService.TUpdate(updateCategoryDto));
+        public async Task<IActionResult> Update(UpdateCategoryDto updateCategoryDto) => ActionResultInstance(await _categoryService.TUpdate(updateCategoryDto));
 
         [HttpDelete]
-        public async Task<IActionResult> Delete(int id) => ActionResultInstance(await _brandService.TDelete(id));
+        public async Task<IActionResult> Delete(int id) => ActionResultInstance(await _categoryService.TDelete(id));
     }
 }
