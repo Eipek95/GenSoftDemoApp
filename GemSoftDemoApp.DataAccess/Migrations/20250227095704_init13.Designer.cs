@@ -4,6 +4,7 @@ using GemSoftDemoApp.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GemSoftDemoApp.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250227095704_init13")]
+    partial class init13
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -153,7 +156,7 @@ namespace GemSoftDemoApp.DataAccess.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -229,8 +232,6 @@ namespace GemSoftDemoApp.DataAccess.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductId");
-
                     b.ToTable("OrderDetails");
                 });
 
@@ -245,7 +246,7 @@ namespace GemSoftDemoApp.DataAccess.Migrations
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -253,6 +254,9 @@ namespace GemSoftDemoApp.DataAccess.Migrations
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(256)");
+
+                    b.Property<int?>("OrderDetailId")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -266,6 +270,8 @@ namespace GemSoftDemoApp.DataAccess.Migrations
                     b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("OrderDetailId");
 
                     b.ToTable("Products");
                 });
@@ -386,19 +392,13 @@ namespace GemSoftDemoApp.DataAccess.Migrations
 
             modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.OrderDetail", b =>
                 {
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.Order", null)
+                    b.HasOne("GemSoftDemoApp.Entity.Entities.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.Product", b =>
@@ -411,9 +411,11 @@ namespace GemSoftDemoApp.DataAccess.Migrations
 
                     b.HasOne("GemSoftDemoApp.Entity.Entities.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("GemSoftDemoApp.Entity.Entities.OrderDetail", null)
+                        .WithMany("Products")
+                        .HasForeignKey("OrderDetailId");
 
                     b.Navigation("Brand");
 
@@ -489,6 +491,11 @@ namespace GemSoftDemoApp.DataAccess.Migrations
             modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.Order", b =>
                 {
                     b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.OrderDetail", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

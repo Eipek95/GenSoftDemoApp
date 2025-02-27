@@ -1,4 +1,5 @@
 ﻿using GemSoftDemoApp.Dto.OrderDtos;
+using GemSoftDemoApp.Dto.ProductDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,8 @@ namespace GemSoftDemoApp.Dto.OrderDetailDtos
         public int ProductId { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
+        [JsonIgnore]
         public int OrderId { get; set; }
-        
+        public ProductDto? Product{ get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace GemSoftDemoApp.Business.Concrete
             if (result == HttpStatusCode.Conflict)
                 return MyResponse<NoDataDto>.Fail(new ErrorDto("Ad Zaten Mevcut", false), 409);
 
-            return MyResponse<NoDataDto>.Success(new NoDataDto(), 201);
+            return MyResponse<NoDataDto>.Success(201);
         }
 
         public async Task<MyResponse<NoDataDto>> TDelete(int id)
@@ -33,7 +33,7 @@ namespace GemSoftDemoApp.Business.Concrete
             if (result == HttpStatusCode.NotFound)
                 return MyResponse<NoDataDto>.Fail(new ErrorDto("Kayıt Bulunamadı", false), 404);
 
-            return MyResponse<NoDataDto>.Success(new NoDataDto(), 200);
+            return MyResponse<NoDataDto>.Success(200);
         }
 
 
@@ -90,12 +90,12 @@ namespace GemSoftDemoApp.Business.Concrete
             var map = mapper.Map<T>(entity);
             var result = await _repository.Update(map);
             if (result == HttpStatusCode.Conflict)
-                return MyResponse<NoDataDto>.Fail(new ErrorDto("Marka Zaten Mevcut", false), 409);
+                return MyResponse<NoDataDto>.Fail(new ErrorDto("Başlık Zaten Mevcut", false), 409);
 
             if (result == HttpStatusCode.NotFound)
-                return MyResponse<NoDataDto>.Fail(new ErrorDto("GüncelleneceK Marka Bulunamadı", false), 404);
+                return MyResponse<NoDataDto>.Fail(new ErrorDto("Güncellenecek Veri Bulunamadı", false), 404);
 
-            return MyResponse<NoDataDto>.Success(new NoDataDto(), 200);
+            return MyResponse<NoDataDto>.Success(200);
         }
     }
 }

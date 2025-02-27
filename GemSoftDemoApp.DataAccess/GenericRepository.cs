@@ -76,7 +76,7 @@ namespace GemSoftDemoApp.DataAccess
             if (existingEntity is null)
                 return HttpStatusCode.NotFound;
 
-            bool exists = await _context.Brands.AnyAsync(x => x.Id != entity.Id & x.Title == entity.Title);
+            bool exists = await Table.AnyAsync(x => x.Id != entity.Id & x.Title == entity.Title);
             if (exists)
                 return HttpStatusCode.Conflict;
 

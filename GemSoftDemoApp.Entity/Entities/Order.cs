@@ -14,7 +14,7 @@ namespace GemSoftDemoApp.Entity.Entities
         public decimal TotalPrice { get; set; }
         public int UserId{ get; set; }
         public AppUser? User{ get; set; }
-        public List<OrderDetail>? OrderDetails { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; } = new();
         public OrderStatus Status { get; set; } = OrderStatus.Received;
         public string OrderNumber { get; set; } = null!;
     }

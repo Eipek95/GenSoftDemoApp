@@ -10,16 +10,19 @@ namespace GemSoftDemoApp.API.Controllers
     public class OrdersController(IOrderService _orderService) : CustomBaseController
     {
         [HttpGet]
-        public async Task<IActionResult> GetAll() => ActionResultInstance(await _orderService.TGetList());
+        public async Task<IActionResult> GetAll() => ActionResultInstance(await _orderService.TGetOrdersWithDetails()); 
 
         [HttpGet]
-        public async Task<IActionResult> GetById(int id) => ActionResultInstance(await _orderService.TGetById(id));
+        public async Task<IActionResult> GetById(int id) => ActionResultInstance(await _orderService.TGetOrderWithDetailById(id)); 
+        
+        [HttpGet]
+        public async Task<IActionResult> GetOrderWithDetailByOrderNumber(string orderNumber) => ActionResultInstance(await _orderService.TGetOrderWithDetailByOrderNumber(orderNumber));
 
         [HttpPost]
         public async Task<IActionResult> Create(CreateOrderDto orderDto) => ActionResultInstance(await _orderService.TCreate(orderDto));
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateOrderDto updateOrderDto) => ActionResultInstance(await _orderService.TUpdate(updateOrderDto));
+        public async Task<IActionResult> Update(UpdateOrderDto updateOrderDto) => ActionResultInstance(await _orderService.TUpdateOrder(updateOrderDto));
 
         [HttpDelete]
         public async Task<IActionResult> Delete(int id) => ActionResultInstance(await _orderService.TDelete(id));

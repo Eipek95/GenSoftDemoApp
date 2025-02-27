@@ -14,6 +14,7 @@ namespace GemSoftDemoApp.DataAccess
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         }
     }

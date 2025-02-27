@@ -30,5 +30,14 @@ namespace GemSoftDemoApp.Business.Concrete
 
             return MyResponse<List<ProductDto>>.Success(map,200);
         }
+
+        public async Task<MyResponse<List<ProductDto>>> TGetAllProductByCategoryId(int categoryId)
+        {
+            List<Product> products = await _productRepository.GetAllProductByCategoryId(categoryId);
+            var map = _mapper.Map<List<ProductDto>>(products);
+            if (!products.Any()) return MyResponse<List<ProductDto>>.Fail(new ErrorDto($"{categoryId} kategoriye ait ürün bulunumadı", false), 404);
+
+            return MyResponse<List<ProductDto>>.Success(map, 200);
+        }
     }
 }

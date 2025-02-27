@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GemSoftDemoApp.Dto.BrandDtos;
+using GemSoftDemoApp.Dto.CategoryDtos;
 using GemSoftDemoApp.Dto.OrderDetailDtos;
 using GemSoftDemoApp.Dto.OrderDtos;
 using GemSoftDemoApp.Dto.ProductDtos;
@@ -27,6 +28,10 @@ namespace GemSoftDemoApp.API.Mapping
             CreateMap<OrderDetail, OrderDetailDto>().ReverseMap();
             CreateMap<OrderDetail, CreateOrderDetailDto>().ReverseMap();
             CreateMap<OrderDetail, UpdateOrderDetailDto>().ReverseMap();
+
+            CreateMap<Category, CategoryDto>().ReverseMap();
+            CreateMap<Category, CreateCategoryDto>().ReverseMap();
+            CreateMap<Category, UpdateCategoryDto>().ReverseMap();
         }
     }
 }

@@ -17,6 +17,9 @@ namespace GemSoftDemoApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllProductByBrandId(int brandId) => ActionResultInstance(await _productService.TGetAllProductByBrandId(brandId));
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllProductByCategoryId(int categoryId) => ActionResultInstance(await _productService.TGetAllProductByCategoryId(categoryId));
+
         [HttpPost]
         public async Task<IActionResult> Create(CreateProductDto productDto) => ActionResultInstance(await _productService.TCreate(productDto));
         
