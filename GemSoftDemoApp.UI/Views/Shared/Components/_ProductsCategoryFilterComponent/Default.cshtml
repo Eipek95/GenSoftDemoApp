@@ -1,0 +1,17 @@
+﻿@model List<CategoryViewModel>
+<div class="mb-3">
+    <h4>Kategoriler</h4>
+    <ul class="list-unstyled fruite-categorie">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="d-flex justify-content-between fruite-name">
+                    <a asp-control="Home"
+                       asp-action="Products"
+                       asp-route-categoryId="@item.Id"><i class="fas fa-apple-alt me-2"></i>@item.Title</a>
+                    <span>(@item.ProductCount)</span>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

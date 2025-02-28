@@ -1,11 +1,9 @@
+using GemSoftDemoApp.UI.Helpers;
 using GemSoftDemoApp.UI.Models;
-using GemSoftDemoApp.UI.ViewModels;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authentication;
+using GemSoftDemoApp.UI.ViewModels.CategoryViewModels;
+using GemSoftDemoApp.UI.ViewModels.ProductViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 
 namespace GemSoftDemoApp.UI.Controllers;
 
@@ -18,79 +16,78 @@ public class HomeController : Controller
         _logger = logger;
         _client = clientFactory.CreateClient("GemSoftAppClient");
     }
-
+    [HttpGet]
     public IActionResult Index()
     {
         return View();
     }
-
-    public IActionResult Register()
-    {
-        return View();
-    }
-    [HttpPost]
-    public async Task<IActionResult> Register(RegisterViewModel entity)
-    {
-        var result = await _client.PostAsJsonAsync("Auth/Register", entity);
-        var response = await result.Content.ReadFromJsonAsync<ResponseModel<RegisterViewModel>>();
-
-        if (response.error is not null)
-        {
-            foreach (var item in response.error.errors)
-                ModelState.AddModelError("", item);
-
-            return View();
-        }
-
-        return RedirectToAction("Login", "Home");
-    }
     [HttpGet]
-    public IActionResult Login()
+    public async Task<IActionResult> Products(int currentPage = 1, int? price = 0, int? categoryId = 0)
     {
-        return View();
-    }
-    [HttpPost]
-    public async Task< IActionResult> Login(LoginViewModel entity)
-    {
-        var result = await _client.PostAsJsonAsync("Auth/Login", entity);
-        var response = await result.Content.ReadFromJsonAsync<ResponseModel<LoginResponseViewModel>>();
-
+        var response = await _client.GetFromJsonAsync<ResponseModel<List<CategoryViewModel>>>("Categories/GetAllCategoryWithProducts");
         if (response.error is not null)
         {
-            foreach (var item in response.error.errors)
-                ModelState.AddModelError("", item);
-
-            return View(entity);
+            return NotFound();
         }
 
-        var handler = new JwtSecurityTokenHandler();
-        
-        var token = handler.ReadJwtToken(response.data.Token);
-        var claims = token.Claims.ToList();
 
-        if (response.data.Token != null)
-        {
-            claims.Add(new Claim("Token", response.data.Token));
-            var claimsIdentity = new ClaimsIdentity(claims, JwtBearerDefaults.AuthenticationScheme);
-            var authProps = new AuthenticationProperties
+        var allProducts = response.data
+            .Where(c => c.Products != null && c.Products.Any())
+            .SelectMany(c => c.Products!.Select(p => new ProductViewModel
             {
-                ExpiresUtc = response.data.ExpireDate,
-                IsPersistent = true
-            };
+                Id = p.Id,
+                Title = p.Title,
+                BrandId = p.BrandId,
+                CategoryId = p.CategoryId,
+                ImageUrl = p.ImageUrl,
+                Price = p.Price,
+                Category = new CategoryViewModel { Id = c.Id, Title = c.Title }
+            }))
+            .AsQueryable();
 
-            await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProps);
+        if (price > 0 )
+            allProducts = allProducts.Where(x => x.Price <= price);
+        if (categoryId > 0)
+            allProducts = allProducts.Where(x => x.CategoryId == categoryId);
+        //if (price > 0 && categoryId > 0)
+        //    allProducts = allProducts.Where(x => x.CategoryId == categoryId && x.Price <= price);
 
-            return RedirectToAction("Index", "Home");
-        }
-        ModelState.AddModelError("", "Kullanýcý Adý veya Þifre Hatalý");
-        return View();
+
+        int pageSize = 9;
+        int totalRecords = allProducts.Count();
+        int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+
+        var pagedProducts = allProducts
+            .Skip((currentPage - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+        // Kategorilere göre grupla, her kategoride sadece o sayfadaki ürünler olacak
+        var groupedData = pagedProducts
+            .GroupBy(p => p.Category)
+            .Select(g => new CategoryViewModel
+            {
+                Id = g.Key.Id,
+                Title = g.Key.Title,
+                Products = g.ToList()
+            }).ToList();
+
+        var pageNumbers = Helper.GeneratePageNumbers(totalPages, currentPage);
+
+        var result = new PagedResultListViewModel<CategoryViewModel>
+        {
+            Data = groupedData,
+            CurrentPage = currentPage,
+            PageSize = pageSize,
+            TotalRecords = totalRecords,
+            PageNumbers = pageNumbers,
+        };
+
+        if (price > 0) result.Price = price;
+        //if (categoryId > 0) result.CategoryId = categoryId;
+
+        return View(result);
     }
-    public async Task<IActionResult> Logout()
-    {
-        await HttpContext.SignOutAsync();
-        return RedirectToAction("Index", "Home");
-    }
-
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
