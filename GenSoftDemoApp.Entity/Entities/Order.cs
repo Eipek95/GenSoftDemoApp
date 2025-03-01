@@ -11,5 +11,6 @@ namespace GenSoftDemoApp.Entity.Entities
         public List<OrderDetail> OrderDetails { get; set; } = new();
         public OrderStatus Status { get; set; } = OrderStatus.Received;
         public string OrderNumber { get; set; } = null!;
+        public string? IpAddress { get; set; }
     }
 }

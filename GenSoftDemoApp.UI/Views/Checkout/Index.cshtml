@@ -1,0 +1,169 @@
+﻿@model List<CartItemViewModel>
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<!-- Single Page Header start -->
+<div class="container-fluid page-header py-5">
+    <h1 class="text-center text-white display-6">Ödeme Sayfası</h1>
+    <ol class="breadcrumb justify-content-center mb-0">
+        <li class="breadcrumb-item"><a href="/">Anasayfa</a></li>
+        <li class="breadcrumb-item active text-white">Ödeme</li>
+    </ol>
+</div>
+<!-- Single Page Header End -->
+<!-- Checkout Page Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <h1 class="mb-4 text-center">Fatura ve Sipariş Detayları</h1>
+        <hr />
+        <form asp-action="Index" method="post">
+            <div class="row g-5">
+                <div class="col-md-12 col-lg-6 col-xl-7">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">Ad<sup>*</sup></label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">Soyad<sup>*</sup></label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">Şirket Adı/Bireysel<sup>*</sup></label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">İlçe<sup>*</sup></label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">Şehir<sup>*</sup></label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">Posta Kodu<sup>*</sup></label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">Telefon<sup>*</sup></label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-6">
+                            <div class="form-item w-100">
+                                <label class="form-label my-3">Mail<sup>*</sup></label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-item mt-3">
+                        <textarea name="Adres" class="form-control" spellcheck="false" cols="30" rows="5" placeholder="Adres"></textarea>
+                    </div>
+
+
+                    <div class="form-item mt-3">
+                        <textarea name="text" class="form-control" spellcheck="false" cols="30" rows="5" placeholder="Notlar"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6 col-xl-5">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ürün</th>
+                                    <th scope="col">Adı</th>
+                                    <th scope="col">Fiyat</th>
+                                    <th scope="col">Kg (Adet)</th>
+                                    <th scope="col">Toplam</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="d-flex align-items-center mt-2">
+                                                <img src="@item.ImageUrl" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="">
+                                            </div>
+                                        </th>
+                                        <td class="py-5">@item.Title</td>
+                                        <td class="py-5">@item.Price ₺</td>
+                                        <td class="py-5">@item.Quantity</td>
+                                        <td class="py-5">@item.Total</td>
+                                    </tr>
+
+                                }
+
+                                <tr>
+                                    <th scope="row">
+                                    </th>
+                                    <td class="py-5"></td>
+                                    <td class="py-5"></td>
+                                    <td class="py-5">
+                                        <p class="mb-0 text-dark py-3">Tutar</p>
+                                    </td>
+                                    <td class="py-5">
+                                        <div class="py-3 border-bottom border-top">
+                                            <p class="mb-0 text-dark">@ViewBag.total ₺</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                    </th>
+                                    <td>
+                                        <p class="mb-0 text-dark">Kargo</p>
+                                    </td>
+                                    <td colspan="3">
+                                        <div class="form-check text-start">
+                                            <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-1" name="Shipping-1" value="Shipping" checked disabled>
+                                            <label class="form-check-label" for="Shipping-1">Ücretsiz Kargo</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                    </th>
+                                    <td>
+                                        <p class="mb-0 text-dark">Ödeme Yöntemi</p>
+                                    </td>
+                                    <td colspan="3">
+                                        <div class="form-check text-start">
+                                            <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-1" name="Shipping-1" value="Shipping" checked disabled>
+                                            <label class="form-check-label" for="Shipping-1">Stripe</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row g-4 text-center align-items-center justify-content-center pt-4">
+                        <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Ödemeyi Tamamla</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Checkout Page End -->
+
+

@@ -1,5 +1,7 @@
 ﻿using GenSoftDemoApp.DataAccess.Abstract;
 using GenSoftDemoApp.DataAccess.Concrete;
+using GenSoftDemoApp.DataAccess.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

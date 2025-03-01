@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GenSoftDemoApp.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250227111810_init18")]
-    partial class init18
+    [Migration("20250301141525_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace GenSoftDemoApp.DataAccess.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.AppRole", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.AppRole", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,7 +55,7 @@ namespace GenSoftDemoApp.DataAccess.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.AppUser", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.AppUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -123,7 +123,7 @@ namespace GenSoftDemoApp.DataAccess.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.Brand", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Brand", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -143,7 +143,7 @@ namespace GenSoftDemoApp.DataAccess.Migrations
                     b.ToTable("Brands");
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.Category", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,14 +156,14 @@ namespace GenSoftDemoApp.DataAccess.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.Order", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Order", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -173,6 +173,9 @@ namespace GenSoftDemoApp.DataAccess.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("IpAddress")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -201,7 +204,7 @@ namespace GenSoftDemoApp.DataAccess.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.OrderDetail", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.OrderDetail", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -237,7 +240,7 @@ namespace GenSoftDemoApp.DataAccess.Migrations
                     b.ToTable("OrderDetails");
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.Product", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -248,7 +251,7 @@ namespace GenSoftDemoApp.DataAccess.Migrations
                     b.Property<int>("BrandId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -376,9 +379,9 @@ namespace GenSoftDemoApp.DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.Order", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Order", b =>
                 {
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.AppUser", "User")
+                    b.HasOne("GenSoftDemoApp.Entity.Entities.AppUser", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -387,15 +390,15 @@ namespace GenSoftDemoApp.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.OrderDetail", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.OrderDetail", b =>
                 {
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.Order", null)
+                    b.HasOne("GenSoftDemoApp.Entity.Entities.Order", null)
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.Product", "Product")
+                    b.HasOne("GenSoftDemoApp.Entity.Entities.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -404,17 +407,19 @@ namespace GenSoftDemoApp.DataAccess.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.Product", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Product", b =>
                 {
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.Brand", "Brand")
+                    b.HasOne("GenSoftDemoApp.Entity.Entities.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.Category", "Category")
+                    b.HasOne("GenSoftDemoApp.Entity.Entities.Category", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Brand");
 
@@ -423,7 +428,7 @@ namespace GenSoftDemoApp.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.AppRole", null)
+                    b.HasOne("GenSoftDemoApp.Entity.Entities.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -432,7 +437,7 @@ namespace GenSoftDemoApp.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.AppUser", null)
+                    b.HasOne("GenSoftDemoApp.Entity.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -441,7 +446,7 @@ namespace GenSoftDemoApp.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.AppUser", null)
+                    b.HasOne("GenSoftDemoApp.Entity.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -450,13 +455,13 @@ namespace GenSoftDemoApp.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
                 {
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.AppRole", null)
+                    b.HasOne("GenSoftDemoApp.Entity.Entities.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.AppUser", null)
+                    b.HasOne("GenSoftDemoApp.Entity.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -465,29 +470,29 @@ namespace GenSoftDemoApp.DataAccess.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("GemSoftDemoApp.Entity.Entities.AppUser", null)
+                    b.HasOne("GenSoftDemoApp.Entity.Entities.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.AppUser", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.AppUser", b =>
                 {
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.Brand", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Brand", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.Category", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Category", b =>
                 {
                     b.Navigation("Products");
                 });
 
-            modelBuilder.Entity("GemSoftDemoApp.Entity.Entities.Order", b =>
+            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Order", b =>
                 {
                     b.Navigation("OrderDetails");
                 });

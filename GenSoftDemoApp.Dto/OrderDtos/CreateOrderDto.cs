@@ -30,7 +30,8 @@ namespace GenSoftDemoApp.Dto.OrderDtos
 
         [JsonIgnore]
         public string OrderNumber { get; private set; }
-
+        [JsonIgnore]
+        public string? IpAddress { get; set; }
         private readonly Guid OrderGuid = Guid.NewGuid();
         private void GenerateOrderNumber()
         {

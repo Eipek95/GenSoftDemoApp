@@ -1,7 +1,9 @@
+using GenSoftDemoApp.UI.Helpers;
 using GenSoftDemoApp.UI.Services.SessionServices;
 using GenSoftDemoApp.UI.Services.TokenServices;
 using GenSoftDemoApp.UI.Services.UserServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Stripe;
 using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,6 +46,8 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("StripeSettings"));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -59,6 +63,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseStatusCodePagesWithReExecute("/ErrorPage/NotFound404/");
+
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("StripeSettings:SecretKey").Get<string>();
+
+
+
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
