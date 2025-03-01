@@ -1,16 +1,16 @@
-﻿using GenSoftDemoApp.Dto.Enums;
+﻿using GenSoftDemoApp.UI.Enums;
 
-namespace GenSoftDemoApp.Entity.Entities
+namespace GenSoftDemoApp.UI.ViewModels.OrderViewModels
 {
-    public class Order: EntityBase
+    public class OrderViewModel
     {
+        public int Id { get; set; }
+        public string OrderNumber { get; set; } = null!;
         public DateTime OrderDate { get; set; }
         public decimal TotalPrice { get; set; }
-        public int UserId{ get; set; }
-        public AppUser? User{ get; set; }
-        public List<OrderDetail> OrderDetails { get; set; } = new();
+        public int UserId { get; set; }
         public OrderStatus Status { get; set; } = OrderStatus.Received;
-        public string OrderNumber { get; set; } = null!;
+        public List<OrderDetailViewModel>? OrderDetails { get; set; }
         public string? IpAddress { get; set; }
         public string? FullName { get; set; }
         public string? CompanyName { get; set; }

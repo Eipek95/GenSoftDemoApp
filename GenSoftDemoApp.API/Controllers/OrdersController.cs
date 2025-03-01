@@ -13,7 +13,9 @@ namespace GenSoftDemoApp.API.Controllers
         public async Task<IActionResult> GetAll() => ActionResultInstance(await _orderService.TGetOrdersWithDetails()); 
 
         [HttpGet]
-        public async Task<IActionResult> GetById(int id) => ActionResultInstance(await _orderService.TGetOrderWithDetailById(id)); 
+        public async Task<IActionResult> GetById(int id) => ActionResultInstance(await _orderService.TGetOrderWithDetailById(id));
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetOrderWithDetailByUserId(int userId) => ActionResultInstance(await _orderService.TGetOrderWithDetailByUserId(userId)); 
         
         [HttpGet]
         public async Task<IActionResult> GetOrderWithDetailByOrderNumber(string orderNumber) => ActionResultInstance(await _orderService.TGetOrderWithDetailByOrderNumber(orderNumber));

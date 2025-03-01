@@ -55,5 +55,16 @@ namespace GenSoftDemoApp.DataAccess.Concrete
             await _context.SaveChangesAsync();
             return HttpStatusCode.OK;
         }
+
+        public async Task<Order> GetOrderWithDetailByUserId(int userId)
+        {
+            Order? order = await _context.Orders
+                .AsNoTracking()
+            .Include(o => o.OrderDetails)
+            .ThenInclude(od => od.Product)
+            .OrderByDescending(p=>p.OrderDate)
+            .FirstOrDefaultAsync(x => x.UserId == userId);
+            return order;
+        }
     }
 }

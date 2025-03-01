@@ -7,6 +7,7 @@ namespace GenSoftDemoApp.DataAccess.Abstract
     {
         Task<List<Order>> GetOrdersWithDetails();
         Task<Order> GetOrderWithDetailById(int id);
+        Task<Order> GetOrderWithDetailByUserId(int userId);
         Task<Order> GetOrderWithDetailByOrderNumber(string orderNumber);
         Task<HttpStatusCode> UpdateOrder(Order order);
 

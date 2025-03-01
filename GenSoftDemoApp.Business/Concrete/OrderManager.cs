@@ -46,6 +46,16 @@ namespace GenSoftDemoApp.Business.Concrete
             return MyResponse<OrderDto>.Success(map, 200);
         }
 
+        public async Task<MyResponse<OrderDto>> TGetOrderWithDetailByUserId(int userId)
+        {
+            Order order = await _orderRepository.GetOrderWithDetailByUserId(userId);
+            if (order is null)
+                return MyResponse<OrderDto>.Fail(new ErrorDto("Sipariş Bulunamadı", false), 404);
+
+            var map = _mapper.Map<OrderDto>(order);
+            return MyResponse<OrderDto>.Success(map, 200);
+        }
+
         public async Task<MyResponse<NoDataDto>> TUpdateOrder(UpdateOrderDto order)
         {
             var map = _mapper.Map<Order>(order);
