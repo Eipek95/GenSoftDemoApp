@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace GemSoftDemoApp.UI.Services.UserServices
+namespace GenSoftDemoApp.UI.Services.UserServices
 {
     public interface IUserService
     {

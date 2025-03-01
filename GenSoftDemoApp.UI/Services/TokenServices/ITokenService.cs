@@ -1,4 +1,4 @@
-﻿namespace GemSoftDemoApp.UI.Services.TokenServices
+﻿namespace GenSoftDemoApp.UI.Services.TokenServices
 {
     public interface ITokenService
     {

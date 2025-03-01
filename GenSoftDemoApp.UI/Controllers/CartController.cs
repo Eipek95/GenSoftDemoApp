@@ -1,11 +1,11 @@
-﻿using GemSoftDemoApp.UI.Models;
-using GemSoftDemoApp.UI.Services.SessionServices;
-using GemSoftDemoApp.UI.Services.TokenServices;
-using GemSoftDemoApp.UI.ViewModels.CartViewModels;
-using GemSoftDemoApp.UI.ViewModels.ProductViewModels;
+﻿using GenSoftDemoApp.UI.Models;
+using GenSoftDemoApp.UI.Services.SessionServices;
+using GenSoftDemoApp.UI.Services.TokenServices;
+using GenSoftDemoApp.UI.ViewModels.CartViewModels;
+using GenSoftDemoApp.UI.ViewModels.ProductViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GemSoftDemoApp.UI.Controllers
+namespace GenSoftDemoApp.UI.Controllers
 {
     public class CartController : Controller
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace GemSoftDemoApp.UI.Services.UserServices
+namespace GenSoftDemoApp.UI.Services.UserServices
 {
     public class UserService:IUserService
     {

@@ -1,11 +1,4 @@
-﻿using GemSoftDemoApp.Dto.BrandDtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GemSoftDemoApp.Dto.ProductDtos
+﻿namespace GenSoftDemoApp.Dto.ProductDtos
 {
     public class UpdateProductDto
     {

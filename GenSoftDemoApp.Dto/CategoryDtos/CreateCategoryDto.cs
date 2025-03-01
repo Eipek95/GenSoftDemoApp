@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.Dto.CategoryDtos
+namespace GenSoftDemoApp.Dto.CategoryDtos
 {
     public class CreateCategoryDto
     {

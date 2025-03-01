@@ -1,9 +1,9 @@
-﻿using GemSoftDemoApp.DataAccess.Abstract;
-using GemSoftDemoApp.DataAccess.Concrete;
+﻿using GenSoftDemoApp.DataAccess.Abstract;
+using GenSoftDemoApp.DataAccess.Concrete;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GemSoftDemoApp.DataAccess
+namespace GenSoftDemoApp.DataAccess
 {
     public static class Registiration
     {

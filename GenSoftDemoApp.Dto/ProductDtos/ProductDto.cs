@@ -1,13 +1,8 @@
-﻿using GemSoftDemoApp.Dto.BrandDtos;
-using GemSoftDemoApp.Dto.CategoryDtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using GenSoftDemoApp.Dto.BrandDtos;
+using GenSoftDemoApp.Dto.CategoryDtos;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.Dto.ProductDtos
+namespace GenSoftDemoApp.Dto.ProductDtos
 {
     public class ProductDto
     {

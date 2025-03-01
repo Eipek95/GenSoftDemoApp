@@ -1,11 +1,11 @@
-using GemSoftDemoApp.UI.Helpers;
-using GemSoftDemoApp.UI.Models;
-using GemSoftDemoApp.UI.ViewModels.CategoryViewModels;
-using GemSoftDemoApp.UI.ViewModels.ProductViewModels;
+using GenSoftDemoApp.UI.Helpers;
+using GenSoftDemoApp.UI.Models;
+using GenSoftDemoApp.UI.ViewModels.CategoryViewModels;
+using GenSoftDemoApp.UI.ViewModels.ProductViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace GemSoftDemoApp.UI.Controllers;
+namespace GenSoftDemoApp.UI.Controllers;
 
 public class HomeController : Controller
 {

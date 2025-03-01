@@ -1,9 +1,9 @@
-﻿using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.Dto.OrderDtos;
+﻿using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.Dto.OrderDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GemSoftDemoApp.API.Controllers
+namespace GenSoftDemoApp.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

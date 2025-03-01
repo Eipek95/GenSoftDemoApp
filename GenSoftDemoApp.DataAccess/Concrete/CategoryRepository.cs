@@ -1,6 +1,6 @@
-﻿using GemSoftDemoApp.DataAccess.Abstract;
-using GemSoftDemoApp.DataAccess.Context;
-using GemSoftDemoApp.Entity.Entities;
+﻿using GenSoftDemoApp.DataAccess.Abstract;
+using GenSoftDemoApp.DataAccess.Context;
+using GenSoftDemoApp.Entity.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.DataAccess.Concrete
+namespace GenSoftDemoApp.DataAccess.Concrete
 {
     public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {

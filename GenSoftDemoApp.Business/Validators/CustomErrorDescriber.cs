@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace GemSoftDemoApp.Business.Validators
+namespace GenSoftDemoApp.Business.Validators
 {
     public class CustomErrorDescriber : IdentityErrorDescriber
     {

@@ -1,7 +1,7 @@
-﻿using GemSoftDemoApp.Dto.OrderDetailDtos;
+﻿using GenSoftDemoApp.Dto.OrderDetailDtos;
 using System.Text.Json.Serialization;
 
-namespace GemSoftDemoApp.Dto.OrderDtos
+namespace GenSoftDemoApp.Dto.OrderDtos
 {
     public class CreateOrderDto
     {

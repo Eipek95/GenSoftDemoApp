@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.DataAccess.Abstract;
-using GemSoftDemoApp.Dto.CategoryDtos;
-using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Entity.Entities;
+using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.DataAccess.Abstract;
+using GenSoftDemoApp.Dto.CategoryDtos;
+using GenSoftDemoApp.Dto.ResponseDtos;
+using GenSoftDemoApp.Entity.Entities;
 
-namespace GemSoftDemoApp.Business.Concrete
+namespace GenSoftDemoApp.Business.Concrete
 {
-    class CategoryManager : GenericManager<Category, CategoryDto, CreateCategoryDto, UpdateCategoryDto>, ICategoryService
+   public class CategoryManager : GenericManager<Category, CategoryDto, CreateCategoryDto, UpdateCategoryDto>, ICategoryService
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;

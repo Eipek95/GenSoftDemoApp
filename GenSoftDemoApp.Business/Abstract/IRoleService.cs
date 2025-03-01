@@ -1,13 +1,8 @@
-﻿using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Dto.UserDtos;
-using GemSoftDemoApp.Entity.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GenSoftDemoApp.Dto.ResponseDtos;
+using GenSoftDemoApp.Dto.UserDtos;
+using GenSoftDemoApp.Entity.Entities;
 
-namespace GemSoftDemoApp.Business.Abstract
+namespace GenSoftDemoApp.Business.Abstract
 {
     public interface IRoleService
     {

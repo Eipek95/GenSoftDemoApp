@@ -1,10 +1,10 @@
-﻿using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.Dto.BrandDtos;
-using GemSoftDemoApp.Entity.Entities;
+﻿using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.Dto.BrandDtos;
+using GenSoftDemoApp.Entity.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GemSoftDemoApp.API.Controllers
+namespace GenSoftDemoApp.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

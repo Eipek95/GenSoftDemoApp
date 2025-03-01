@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.Dto.UserDtos
+namespace GenSoftDemoApp.Dto.UserDtos
 {
     public class RegisterDto
     {

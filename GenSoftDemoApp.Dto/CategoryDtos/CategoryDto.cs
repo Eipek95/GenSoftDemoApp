@@ -1,6 +1,6 @@
-﻿using GemSoftDemoApp.Dto.ProductDtos;
+﻿using GenSoftDemoApp.Dto.ProductDtos;
 
-namespace GemSoftDemoApp.Dto.CategoryDtos
+namespace GenSoftDemoApp.Dto.CategoryDtos
 {
     public class CategoryDto
     {

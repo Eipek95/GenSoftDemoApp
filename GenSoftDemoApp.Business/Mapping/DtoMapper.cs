@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using GemSoftDemoApp.Dto.BrandDtos;
-using GemSoftDemoApp.Dto.CategoryDtos;
-using GemSoftDemoApp.Dto.OrderDetailDtos;
-using GemSoftDemoApp.Dto.OrderDtos;
-using GemSoftDemoApp.Dto.ProductDtos;
-using GemSoftDemoApp.Dto.UserDtos;
-using GemSoftDemoApp.Entity.Entities;
+using GenSoftDemoApp.Dto.BrandDtos;
+using GenSoftDemoApp.Dto.CategoryDtos;
+using GenSoftDemoApp.Dto.OrderDetailDtos;
+using GenSoftDemoApp.Dto.OrderDtos;
+using GenSoftDemoApp.Dto.ProductDtos;
+using GenSoftDemoApp.Dto.UserDtos;
+using GenSoftDemoApp.Entity.Entities;
 
-namespace GemSoftDemoApp.API.Mapping
+namespace GenSoftDemoApp.API.Mapping
 {
     public class DtoMapper:Profile
     {

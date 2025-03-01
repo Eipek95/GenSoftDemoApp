@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.Entity.Entities
+namespace GenSoftDemoApp.Entity.Entities
 {
     public class OrderDetail:EntityBase
     {

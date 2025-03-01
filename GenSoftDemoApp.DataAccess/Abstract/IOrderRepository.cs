@@ -1,14 +1,7 @@
-﻿using GemSoftDemoApp.Dto.OrderDtos;
-using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Entity.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using GenSoftDemoApp.Entity.Entities;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.DataAccess.Abstract
+namespace GenSoftDemoApp.DataAccess.Abstract
 {
     public interface IOrderRepository : IRepository<Order>
     {

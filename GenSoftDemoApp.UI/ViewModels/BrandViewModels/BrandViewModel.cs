@@ -1,4 +1,4 @@
-﻿namespace GemSoftDemoApp.UI.ViewModels.BrandViewModels
+﻿namespace GenSoftDemoApp.UI.ViewModels.BrandViewModels
 {
     public class BrandViewModel
     {

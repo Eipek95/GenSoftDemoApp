@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.Dto.UserDtos;
-using GemSoftDemoApp.Entity.Entities;
+using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.Dto.UserDtos;
+using GenSoftDemoApp.Entity.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace GemSoftDemoApp.API.Controllers
+namespace GenSoftDemoApp.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

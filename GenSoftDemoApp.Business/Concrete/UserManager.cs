@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
-using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.Dto.LoginDtos;
-using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Dto.UserDtos;
-using GemSoftDemoApp.Entity.Entities;
+using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.Dto.LoginDtos;
+using GenSoftDemoApp.Dto.ResponseDtos;
+using GenSoftDemoApp.Dto.UserDtos;
+using GenSoftDemoApp.Entity.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 
-namespace GemSoftDemoApp.Business.Concrete
+namespace GenSoftDemoApp.Business.Concrete
 {
     public class UserManager(UserManager<AppUser> _userManager,
         SignInManager<AppUser> _signInManager,

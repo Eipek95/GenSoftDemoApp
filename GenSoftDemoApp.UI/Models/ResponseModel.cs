@@ -1,4 +1,4 @@
-﻿namespace GemSoftDemoApp.UI.Models
+﻿namespace GenSoftDemoApp.UI.Models
 {
     public class ResponseModel<T>
     {

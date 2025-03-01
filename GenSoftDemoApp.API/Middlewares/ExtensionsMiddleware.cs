@@ -1,7 +1,7 @@
-﻿using GemSoftDemoApp.Entity.Entities;
+﻿using GenSoftDemoApp.Entity.Entities;
 using Microsoft.AspNetCore.Identity;
 
-namespace GemSoftDemoApp.API.Middlewares
+namespace GenSoftDemoApp.API.Middlewares
 {
     public static class ExtensionsMiddleware
     {

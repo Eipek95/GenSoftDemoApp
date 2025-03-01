@@ -1,4 +1,4 @@
-﻿namespace GemSoftDemoApp.Dto.UserDtos
+﻿namespace GenSoftDemoApp.Dto.UserDtos
 {
     public class CreateRoleDto
     {

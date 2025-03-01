@@ -1,8 +1,8 @@
-﻿using GemSoftDemoApp.UI.Models;
-using GemSoftDemoApp.UI.ViewModels.CategoryViewModels;
+﻿using GenSoftDemoApp.UI.Models;
+using GenSoftDemoApp.UI.ViewModels.CategoryViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GemSoftDemoApp.UI.ViewComponents.UILayout
+namespace GenSoftDemoApp.UI.ViewComponents.UILayout
 {
     public class _UILayoutNavbar : ViewComponent
     {

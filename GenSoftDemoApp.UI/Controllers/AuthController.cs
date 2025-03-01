@@ -1,12 +1,12 @@
-﻿using GemSoftDemoApp.UI.Models;
-using GemSoftDemoApp.UI.ViewModels;
+﻿using GenSoftDemoApp.UI.Models;
+using GenSoftDemoApp.UI.ViewModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
-namespace GemSoftDemoApp.UI.Controllers
+namespace GenSoftDemoApp.UI.Controllers
 {
 
     public class AuthController : Controller

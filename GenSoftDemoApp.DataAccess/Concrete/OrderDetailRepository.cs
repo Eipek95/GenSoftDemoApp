@@ -1,13 +1,8 @@
-﻿using GemSoftDemoApp.DataAccess.Abstract;
-using GemSoftDemoApp.DataAccess.Context;
-using GemSoftDemoApp.Entity.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GenSoftDemoApp.DataAccess.Abstract;
+using GenSoftDemoApp.DataAccess.Context;
+using GenSoftDemoApp.Entity.Entities;
 
-namespace GemSoftDemoApp.DataAccess.Concrete
+namespace GenSoftDemoApp.DataAccess.Concrete
 {
     public class OrderDetailRepository : GenericRepository<OrderDetail>, IOrderDetailRepository
     {

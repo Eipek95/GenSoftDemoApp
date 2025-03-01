@@ -1,12 +1,7 @@
-﻿using GemSoftDemoApp.Dto.LoginDtos;
-using GemSoftDemoApp.Entity.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GenSoftDemoApp.Dto.LoginDtos;
+using GenSoftDemoApp.Entity.Entities;
 
-namespace GemSoftDemoApp.Business.Abstract
+namespace GenSoftDemoApp.Business.Abstract
 {
     public interface IJwtService
     {

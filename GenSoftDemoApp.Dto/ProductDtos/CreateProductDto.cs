@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.Dto.ProductDtos
+namespace GenSoftDemoApp.Dto.ProductDtos
 {
     public class CreateProductDto
     {

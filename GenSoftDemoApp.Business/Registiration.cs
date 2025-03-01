@@ -1,11 +1,12 @@
-﻿using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.Business.Concrete;
-using GemSoftDemoApp.Business.Configurations;
+﻿using GenSoftDemoApp.Business.Concrete;
+using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.Business.Concrete;
+using GenSoftDemoApp.Business.Configurations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace GemSoftDemoApp.Business
+namespace GenSoftDemoApp.Business
 {
     public static class Registiration
     {

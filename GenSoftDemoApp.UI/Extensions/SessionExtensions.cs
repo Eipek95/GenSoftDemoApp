@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace GemSoftDemoApp.UI.Extensions
+namespace GenSoftDemoApp.UI.Extensions
 {
     public static class SessionExtensions
     {

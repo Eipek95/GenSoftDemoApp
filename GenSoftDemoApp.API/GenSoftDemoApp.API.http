@@ -1,0 +1,6 @@
+@GenSoftDemoApp.API_HostAddress = http://localhost:5156
+
+GET {{GenSoftDemoApp.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

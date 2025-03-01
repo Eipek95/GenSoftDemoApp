@@ -1,11 +1,11 @@
-﻿using GemSoftDemoApp.DataAccess.Abstract;
-using GemSoftDemoApp.DataAccess.Context;
-using GemSoftDemoApp.Entity;
+﻿using GenSoftDemoApp.DataAccess.Abstract;
+using GenSoftDemoApp.DataAccess.Context;
+using GenSoftDemoApp.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Net;
 
-namespace GemSoftDemoApp.DataAccess
+namespace GenSoftDemoApp.DataAccess
 {
     public class GenericRepository<T> : IRepository<T> where T : EntityBase
     {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace GemSoftDemoApp.DataAccess.Migrations
+namespace GenSoftDemoApp.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class init16 : Migration

@@ -1,16 +1,10 @@
 ﻿using AutoMapper;
-using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.DataAccess.Abstract;
-using GemSoftDemoApp.Dto.BrandDtos;
-using GemSoftDemoApp.Dto.OrderDetailDtos;
-using GemSoftDemoApp.Entity.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.DataAccess.Abstract;
+using GenSoftDemoApp.Dto.OrderDetailDtos;
+using GenSoftDemoApp.Entity.Entities;
 
-namespace GemSoftDemoApp.Business.Concrete
+namespace GenSoftDemoApp.Business.Concrete
 {
     public class OrderDetailManager : GenericManager<OrderDetail, OrderDetailDto, CreateOrderDetailDto, UpdateOrderDetailDto>, IOrderDetailService
     {

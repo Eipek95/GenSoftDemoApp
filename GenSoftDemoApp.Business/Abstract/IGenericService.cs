@@ -1,8 +1,8 @@
-﻿using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Entity;
+﻿using GenSoftDemoApp.Dto.ResponseDtos;
+using GenSoftDemoApp.Entity;
 using System.Linq.Expressions;
 
-namespace GemSoftDemoApp.Business.Abstract
+namespace GenSoftDemoApp.Business.Abstract
 {
     public interface IGenericService<T, TResultDto, TCreateDto, TUpdateDto> where T : EntityBase where TResultDto : class where TCreateDto : class where TUpdateDto : class
     {

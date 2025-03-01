@@ -1,4 +1,4 @@
-﻿namespace GemSoftDemoApp.Entity
+﻿namespace GenSoftDemoApp.Entity
 {
     public class EntityBase
     {

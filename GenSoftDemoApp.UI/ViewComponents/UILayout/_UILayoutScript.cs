@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace GemSoftDemoApp.UI.ViewComponents.UILayout
+namespace GenSoftDemoApp.UI.ViewComponents.UILayout
 {
     public class _UILayoutScript: ViewComponent
     {

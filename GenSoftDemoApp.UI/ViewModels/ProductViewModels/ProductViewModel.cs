@@ -1,7 +1,7 @@
-﻿using GemSoftDemoApp.UI.ViewModels.BrandViewModels;
-using GemSoftDemoApp.UI.ViewModels.CategoryViewModels;
+﻿using GenSoftDemoApp.UI.ViewModels.BrandViewModels;
+using GenSoftDemoApp.UI.ViewModels.CategoryViewModels;
 
-namespace GemSoftDemoApp.UI.ViewModels.ProductViewModels
+namespace GenSoftDemoApp.UI.ViewModels.ProductViewModels
 {
     public class ProductViewModel
     {

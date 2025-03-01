@@ -1,4 +1,4 @@
-﻿namespace GemSoftDemoApp.UI.Helpers
+﻿namespace GenSoftDemoApp.UI.Helpers
 {
     public static class HttpClientInstance
     {

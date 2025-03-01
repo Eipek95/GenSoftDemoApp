@@ -1,4 +1,4 @@
-﻿namespace GemSoftDemoApp.UI.ViewModels
+﻿namespace GenSoftDemoApp.UI.ViewModels
 {
     public class LoginResponseViewModel
     {

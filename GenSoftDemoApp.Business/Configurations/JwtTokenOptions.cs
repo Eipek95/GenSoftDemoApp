@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.Business.Configurations
+namespace GenSoftDemoApp.Business.Configurations
 {
     public class JwtTokenOptions
     {

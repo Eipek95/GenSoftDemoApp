@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.DataAccess.Abstract;
-using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Entity;
+using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.DataAccess.Abstract;
+using GenSoftDemoApp.Dto.ResponseDtos;
+using GenSoftDemoApp.Entity;
 using System.Linq.Expressions;
 using System.Net;
 
-namespace GemSoftDemoApp.Business.Concrete
+namespace GenSoftDemoApp.Business.Concrete
 {
 
     public class GenericManager<T, TResultDto, TCreateDto, TUpdateDto>(IRepository<T> _repository, IMapper mapper) : IGenericService<T, TResultDto, TCreateDto, TUpdateDto> where T : EntityBase where TResultDto : class where TCreateDto : class where TUpdateDto : class

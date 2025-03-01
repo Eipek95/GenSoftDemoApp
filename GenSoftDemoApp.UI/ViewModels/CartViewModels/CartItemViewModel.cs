@@ -1,4 +1,4 @@
-﻿namespace GemSoftDemoApp.UI.ViewModels.CartViewModels
+﻿namespace GenSoftDemoApp.UI.ViewModels.CartViewModels
 {
     public class CartItemViewModel
     {

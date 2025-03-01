@@ -1,10 +1,10 @@
-﻿using GemSoftDemoApp.UI.Models;
-using GemSoftDemoApp.UI.ViewModels.CategoryViewModels;
-using GemSoftDemoApp.UI.ViewModels.ProductViewModels;
+﻿using GenSoftDemoApp.UI.Models;
+using GenSoftDemoApp.UI.ViewModels.CategoryViewModels;
+using GenSoftDemoApp.UI.ViewModels.ProductViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
-namespace GemSoftDemoApp.UI.ViewComponents.UILayout
+namespace GenSoftDemoApp.UI.ViewComponents.UILayout
 {
     public class _ProductsCategoryFilterComponent : ViewComponent
     {

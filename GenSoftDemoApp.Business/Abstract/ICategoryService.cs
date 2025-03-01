@@ -1,14 +1,8 @@
-﻿using GemSoftDemoApp.Dto.BrandDtos;
-using GemSoftDemoApp.Dto.CategoryDtos;
-using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Entity.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GenSoftDemoApp.Dto.CategoryDtos;
+using GenSoftDemoApp.Dto.ResponseDtos;
+using GenSoftDemoApp.Entity.Entities;
 
-namespace GemSoftDemoApp.Business.Abstract
+namespace GenSoftDemoApp.Business.Abstract
 {
     public interface ICategoryService : IGenericService<Category, CategoryDto, CreateCategoryDto, UpdateCategoryDto>
     {

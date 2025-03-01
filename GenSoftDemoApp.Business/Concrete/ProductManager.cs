@@ -1,16 +1,11 @@
 ﻿using AutoMapper;
-using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.DataAccess.Abstract;
-using GemSoftDemoApp.Dto.ProductDtos;
-using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Entity.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.DataAccess.Abstract;
+using GenSoftDemoApp.Dto.ProductDtos;
+using GenSoftDemoApp.Dto.ResponseDtos;
+using GenSoftDemoApp.Entity.Entities;
 
-namespace GemSoftDemoApp.Business.Concrete
+namespace GenSoftDemoApp.Business.Concrete
 {
     class ProductManager : GenericManager<Product, ProductDto, CreateProductDto, UpdateProductDto>, IProductService
     {

@@ -1,11 +1,11 @@
 
-using GemSoftDemoApp.API.Middlewares;
-using GemSoftDemoApp.Business;
-using GemSoftDemoApp.Business.Configurations;
-using GemSoftDemoApp.Business.Validators;
-using GemSoftDemoApp.DataAccess;
-using GemSoftDemoApp.DataAccess.Context;
-using GemSoftDemoApp.Entity.Entities;
+using GenSoftDemoApp.API.Middlewares;
+using GenSoftDemoApp.Business;
+using GenSoftDemoApp.Business.Configurations;
+using GenSoftDemoApp.Business.Validators;
+using GenSoftDemoApp.DataAccess;
+using GenSoftDemoApp.DataAccess.Context;
+using GenSoftDemoApp.Entity.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

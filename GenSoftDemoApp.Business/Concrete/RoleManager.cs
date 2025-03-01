@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Dto.UserDtos;
-using GemSoftDemoApp.Entity.Entities;
+using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.Dto.ResponseDtos;
+using GenSoftDemoApp.Dto.UserDtos;
+using GenSoftDemoApp.Entity.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.Business.Concrete
+namespace GenSoftDemoApp.Business.Concrete
 {
     public class RoleManager(RoleManager<AppRole> _roleManager,IMapper _mapper) :IRoleService
     {

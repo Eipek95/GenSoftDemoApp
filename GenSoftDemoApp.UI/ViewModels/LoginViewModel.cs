@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GemSoftDemoApp.UI.ViewModels
+namespace GenSoftDemoApp.UI.ViewModels
 {
     public class LoginViewModel
     {

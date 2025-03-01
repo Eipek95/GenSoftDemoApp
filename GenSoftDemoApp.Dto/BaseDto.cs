@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.Dto
+namespace GenSoftDemoApp.Dto
 {
     public abstract class BaseDto:IBaseDto
     {

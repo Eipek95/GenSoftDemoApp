@@ -1,7 +1,7 @@
 ﻿
-using GemSoftDemoApp.Dto.ResponseDtos;
+using GenSoftDemoApp.Dto.ResponseDtos;
 using Microsoft.AspNetCore.Mvc;
-namespace GemSoftDemoApp.API.Controllers
+namespace GenSoftDemoApp.API.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

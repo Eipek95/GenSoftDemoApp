@@ -1,7 +1,6 @@
-﻿using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Entity.Entities;
+﻿using GenSoftDemoApp.Entity.Entities;
 
-namespace GemSoftDemoApp.DataAccess.Abstract
+namespace GenSoftDemoApp.DataAccess.Abstract
 {
     public interface IBrandRepository:IRepository<Brand>
     {

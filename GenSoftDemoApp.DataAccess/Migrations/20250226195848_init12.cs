@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace GemSoftDemoApp.DataAccess.Migrations
+namespace GenSoftDemoApp.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class init12 : Migration

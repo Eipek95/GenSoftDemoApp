@@ -1,7 +1,7 @@
-﻿using GemSoftDemoApp.UI.Extensions;
-using GemSoftDemoApp.UI.ViewModels.CartViewModels;
+﻿using GenSoftDemoApp.UI.Extensions;
+using GenSoftDemoApp.UI.ViewModels.CartViewModels;
 
-namespace GemSoftDemoApp.UI.Services.SessionServices
+namespace GenSoftDemoApp.UI.Services.SessionServices
 {
     public class CartService
     {

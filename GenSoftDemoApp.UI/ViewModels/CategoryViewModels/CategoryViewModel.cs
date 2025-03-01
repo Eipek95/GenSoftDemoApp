@@ -1,7 +1,7 @@
-﻿using GemSoftDemoApp.UI.ViewModels.ProductViewModels;
+﻿using GenSoftDemoApp.UI.ViewModels.ProductViewModels;
 using System.Text.Json.Serialization;
 
-namespace GemSoftDemoApp.UI.ViewModels.CategoryViewModels
+namespace GenSoftDemoApp.UI.ViewModels.CategoryViewModels
 {
     public class CategoryViewModel
     {

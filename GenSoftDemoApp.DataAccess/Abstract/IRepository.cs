@@ -1,15 +1,8 @@
-﻿using GemSoftDemoApp.Dto;
-using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using GenSoftDemoApp.Entity;
 using System.Linq.Expressions;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.DataAccess.Abstract
+namespace GenSoftDemoApp.DataAccess.Abstract
 {
     public interface IRepository<T> where T : EntityBase
     {

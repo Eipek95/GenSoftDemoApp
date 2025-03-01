@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.DataAccess.Abstract;
-using GemSoftDemoApp.Dto.OrderDtos;
-using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Entity.Entities;
+using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.DataAccess.Abstract;
+using GenSoftDemoApp.Dto.OrderDtos;
+using GenSoftDemoApp.Dto.ResponseDtos;
+using GenSoftDemoApp.Entity.Entities;
 
-namespace GemSoftDemoApp.Business.Concrete
+namespace GenSoftDemoApp.Business.Concrete
 {
     public class OrderManager : GenericManager<Order, OrderDto, CreateOrderDto, UpdateOrderDto>, IOrderService
     {

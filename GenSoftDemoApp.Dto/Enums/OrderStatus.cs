@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.Dto.Enums
+namespace GenSoftDemoApp.Dto.Enums
 {
     public enum OrderStatus
     {

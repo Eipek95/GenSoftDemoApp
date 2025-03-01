@@ -1,18 +1,9 @@
 ﻿using AutoMapper;
-using GemSoftDemoApp.Business.Abstract;
-using GemSoftDemoApp.DataAccess.Abstract;
-using GemSoftDemoApp.Dto;
-using GemSoftDemoApp.Dto.BrandDtos;
-using GemSoftDemoApp.Dto.ResponseDtos;
-using GemSoftDemoApp.Entity.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GemSoftDemoApp.Business.Concrete
+using GenSoftDemoApp.Business.Abstract;
+using GenSoftDemoApp.DataAccess.Abstract;
+using GenSoftDemoApp.Dto.BrandDtos;
+using GenSoftDemoApp.Entity.Entities;
+namespace GenSoftDemoApp.Business.Concrete
 {
     public class BrandManager : GenericManager<Brand,BrandDto,CreateBrandDto,UpdateBrandDto>, IBrandService
     {

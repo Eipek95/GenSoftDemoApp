@@ -1,12 +1,12 @@
-﻿using GemSoftDemoApp.Dto.Enums;
-using GemSoftDemoApp.Dto.OrderDetailDtos;
+﻿using GenSoftDemoApp.Dto.Enums;
+using GenSoftDemoApp.Dto.OrderDetailDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.Dto.OrderDtos
+namespace GenSoftDemoApp.Dto.OrderDtos
 {
     public class OrderDto
     {

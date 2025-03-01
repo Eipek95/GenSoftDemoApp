@@ -1,10 +1,10 @@
-﻿using GemSoftDemoApp.UI.Controllers;
-using GemSoftDemoApp.UI.Models;
-using GemSoftDemoApp.UI.ViewModels;
-using GemSoftDemoApp.UI.ViewModels.CategoryViewModels;
+﻿using GenSoftDemoApp.UI.Controllers;
+using GenSoftDemoApp.UI.Models;
+using GenSoftDemoApp.UI.ViewModels;
+using GenSoftDemoApp.UI.ViewModels.CategoryViewModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GemSoftDemoApp.UI.ViewComponents.UILayout
+namespace GenSoftDemoApp.UI.ViewComponents.UILayout
 {
     public class _FruitsShopStartComponent : ViewComponent
     {

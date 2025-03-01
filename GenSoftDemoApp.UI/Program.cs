@@ -1,6 +1,6 @@
-using GemSoftDemoApp.UI.Services.SessionServices;
-using GemSoftDemoApp.UI.Services.TokenServices;
-using GemSoftDemoApp.UI.Services.UserServices;
+using GenSoftDemoApp.UI.Services.SessionServices;
+using GenSoftDemoApp.UI.Services.TokenServices;
+using GenSoftDemoApp.UI.Services.UserServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Net.Http.Headers;
 

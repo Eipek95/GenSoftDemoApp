@@ -1,13 +1,7 @@
-﻿using GemSoftDemoApp.Dto.OrderDtos;
-using GemSoftDemoApp.Dto.ProductDtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using GenSoftDemoApp.Dto.ProductDtos;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
-namespace GemSoftDemoApp.Dto.OrderDetailDtos
+namespace GenSoftDemoApp.Dto.OrderDetailDtos
 {
     public class OrderDetailDto
     {
