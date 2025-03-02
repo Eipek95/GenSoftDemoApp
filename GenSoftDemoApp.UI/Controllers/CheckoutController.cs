@@ -107,8 +107,9 @@ namespace GenSoftDemoApp.UI.Controllers
 
                 HttpContext.Session.Clear();
             }
-            var response2 = await _client.GetFromJsonAsync<ResponseModel<OrderViewModel>>("Orders/GetOrderWithDetailByUserId/" + _tokenService.GetUserId);
-            return View(response2.data);
+            return RedirectToAction("Invoice", "Home", new { area = "Panel" });
+
+           
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using GenSoftDemoApp.Dto.BrandDtos;
 using GenSoftDemoApp.Dto.CategoryDtos;
 using GenSoftDemoApp.Dto.OrderDetailDtos;
 using GenSoftDemoApp.Dto.OrderDtos;
@@ -13,11 +12,7 @@ namespace GenSoftDemoApp.API.Mapping
     {
         public DtoMapper()
         {
-            CreateMap<Brand,BrandDto>().ReverseMap();
-            CreateMap<Brand,CreateBrandDto>().ReverseMap();
-            CreateMap<Brand,UpdateBrandDto>().ReverseMap();
-
-
+         
             CreateMap<Product,ProductDto>().ReverseMap();
             CreateMap<Product,CreateProductDto>().ReverseMap();
             CreateMap<Product,UpdateProductDto>().ReverseMap();

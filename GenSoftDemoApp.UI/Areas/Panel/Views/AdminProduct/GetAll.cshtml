@@ -1,0 +1,134 @@
+﻿@model List<ProductViewModel>
+@{
+    ViewData["Title"] = "GetAll";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="~/panel/plugins/fontawesome-free/css/all.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="~/panel/dist/css/adminlte.min.css">
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Ürünler</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Panel</a></li>
+                    <li class="breadcrumb-item active">Ürünler</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Ürünler</h3>
+
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm mb-2" style="width: 150px;">
+                                <input type="text" id="table_search" class="form-control float-right" placeholder="Ürün Adına Göre Ara" oninput="filterTable()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap" id="searchTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Ürün</th>
+                                    <th>Ürün Adı</th>
+                                    <th>Ürün Fiyatı</th>
+                                    <th>Kategorisi</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td><img src="@item.ImageUrl" alt="image_@item.Id" style="width:50px" /></td>
+                                        <td class="title">@item.Title</td>
+                                        <td>@item.Price ₺</td>
+                                        <td>@item.Category?.Title</td>
+
+                                        <td>
+                                            <a asp-action="Update"
+                                               asp-controller="AdminProduct"
+                                               asp-area="Panel"
+                                               asp-route-id="@item.Id" class="btn btn-sm btn-info">Güncelle</a>
+
+                                            <button type="button"
+                                                    class="btn btn-sm btn-danger"
+                                                    onclick="confirmDelete(@item.Id)">
+                                                Sil
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <a asp-action="Create" asp-controller="AdminProduct" asp-area="Panel" class="btn btn-info mb-3">Ürün Ekle</a>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+       function filterTable() {
+        var input = document.getElementById("table_search").value.toLowerCase().trim();
+        var rows = document.querySelectorAll("#searchTable tbody tr");
+
+        rows.forEach(function (row) {
+            var title = row.querySelector(".title").innerText.toLowerCase();
+
+            if (title.includes(input)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+
+</script>
+<script>
+        function confirmDelete(id) {
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: "Bu ürünü silmek istediğinize emin misiniz?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Evet, sil!',
+            cancelButtonText: 'İptal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Silme işlemi için yönlendirme yapalım
+                window.location.href = `/Panel/AdminProduct/Delete/${id}`;
+            }
+        });
+    }
+
+</script>
+

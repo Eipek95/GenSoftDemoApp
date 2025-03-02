@@ -120,26 +120,6 @@ namespace GenSoftDemoApp.DataAccess.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Brand", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Brands");
-                });
-
             modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -269,9 +249,6 @@ namespace GenSoftDemoApp.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BrandId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -289,8 +266,6 @@ namespace GenSoftDemoApp.DataAccess.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BrandId");
 
                     b.HasIndex("CategoryId");
 
@@ -430,19 +405,11 @@ namespace GenSoftDemoApp.DataAccess.Migrations
 
             modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Product", b =>
                 {
-                    b.HasOne("GenSoftDemoApp.Entity.Entities.Brand", "Brand")
-                        .WithMany("Products")
-                        .HasForeignKey("BrandId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("GenSoftDemoApp.Entity.Entities.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Brand");
 
                     b.Navigation("Category");
                 });
@@ -501,11 +468,6 @@ namespace GenSoftDemoApp.DataAccess.Migrations
             modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.AppUser", b =>
                 {
                     b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Brand", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("GenSoftDemoApp.Entity.Entities.Category", b =>

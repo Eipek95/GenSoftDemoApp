@@ -10,13 +10,13 @@ namespace GenSoftDemoApp.API.Controllers
     {
         [HttpGet]
         public async Task<IActionResult> GetAll() => ActionResultInstance(await _productService.TGetList());
+        
+        [HttpGet]
+        public async Task<IActionResult> GetAllWithCategory() => ActionResultInstance(await _productService.TGetAllProductWithCategory());
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id) => ActionResultInstance(await _productService.TGetById(id));
         
-        [HttpGet]
-        public async Task<IActionResult> GetAllProductByBrandId(int brandId) => ActionResultInstance(await _productService.TGetAllProductByBrandId(brandId));
-
         [HttpGet]
         public async Task<IActionResult> GetAllProductByCategoryId(int categoryId) => ActionResultInstance(await _productService.TGetAllProductByCategoryId(categoryId));
 
@@ -26,7 +26,7 @@ namespace GenSoftDemoApp.API.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(UpdateProductDto updateProductDto) => ActionResultInstance(await _productService.TUpdate(updateProductDto));
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id) => ActionResultInstance(await _productService.TDelete(id));
     }
 }

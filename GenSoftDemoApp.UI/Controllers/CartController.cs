@@ -76,6 +76,5 @@ namespace GenSoftDemoApp.UI.Controllers
             _cartService.ClearCart();
             return RedirectToAction("MyCart");
         }
-
     }
 }

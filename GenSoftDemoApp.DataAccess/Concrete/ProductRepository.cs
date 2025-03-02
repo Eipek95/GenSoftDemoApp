@@ -11,23 +11,23 @@ namespace GenSoftDemoApp.DataAccess.Concrete
         {
         }
 
-        public async Task<List<Product>> GetAllProductByBrandId(int brandId)
+
+
+        public async Task<List<Product>> GetAllProductByCategoryId(int categoryId)
         {
-            var products = await _context.Products.Where(p => p.BrandId == brandId).AsNoTracking()
-                .Include(p=>p.Brand)
-                .Include(p=>p.Category)
+            var products = await _context.Products.Where(p => p.CategoryId == categoryId).AsNoTracking()
+                .Include(p => p.Category)
                 .ToListAsync();
             if (!products.Any())
                 return new List<Product>();
             return products;
         }
 
-        public async Task<List<Product>> GetAllProductByCategoryId(int categoryId)
+        public async Task<List<Product>> GetAllProductWithCategory()
         {
-            var products = await _context.Products.Where(p => p.CategoryId == categoryId).AsNoTracking()
-                .Include(p => p.Brand)
-                .Include(p => p.Category)
-                .ToListAsync();
+            var products = await _context.Products.AsNoTracking()
+            .Include(p => p.Category)
+            .ToListAsync();
             if (!products.Any())
                 return new List<Product>();
             return products;

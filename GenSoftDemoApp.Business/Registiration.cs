@@ -15,7 +15,7 @@ namespace GenSoftDemoApp.Business
 
             services.AddScoped(typeof(IGenericService<,,,>), typeof(GenericManager<,,,>));
 
-            services.AddScoped<IBrandService, BrandManager>();
+            
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<IOrderService, OrderManager>();
             services.AddScoped<IOrderDetailService, OrderDetailManager>();

@@ -1,6 +1,5 @@
 ﻿using GenSoftDemoApp.Business.Abstract;
 using GenSoftDemoApp.Dto.OrderDtos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GenSoftDemoApp.API.Controllers
@@ -10,13 +9,14 @@ namespace GenSoftDemoApp.API.Controllers
     public class OrdersController(IOrderService _orderService) : CustomBaseController
     {
         [HttpGet]
-        public async Task<IActionResult> GetAll() => ActionResultInstance(await _orderService.TGetOrdersWithDetails()); 
+        public async Task<IActionResult> GetAll() => ActionResultInstance(await _orderService.TGetOrdersWithDetails());
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id) => ActionResultInstance(await _orderService.TGetOrderWithDetailById(id));
         [HttpGet("{userId}")]
-        public async Task<IActionResult> GetOrderWithDetailByUserId(int userId) => ActionResultInstance(await _orderService.TGetOrderWithDetailByUserId(userId)); 
-        
+        public async Task<IActionResult> GetOrderWithDetailByUserId(int userId) => ActionResultInstance(await _orderService.TGetOrderWithDetailByUserId(userId));
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetOrdersWithDetailByUserId(int userId) => ActionResultInstance(await _orderService.TGetOrdersWithDetailByUserId(userId));
         [HttpGet]
         public async Task<IActionResult> GetOrderWithDetailByOrderNumber(string orderNumber) => ActionResultInstance(await _orderService.TGetOrderWithDetailByOrderNumber(orderNumber));
 

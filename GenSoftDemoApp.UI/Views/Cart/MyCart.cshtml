@@ -118,7 +118,9 @@
                 confirmButtonText: 'Tamam'
             });
             return false;
+        }else {
+            window.location.href = '@Url.Action("Index", "Checkout")';
+            return true;
         }
-        return true;
     }
 </script>

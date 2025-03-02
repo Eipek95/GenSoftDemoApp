@@ -62,9 +62,20 @@ namespace GenSoftDemoApp.DataAccess.Concrete
                 .AsNoTracking()
             .Include(o => o.OrderDetails)
             .ThenInclude(od => od.Product)
-            .OrderByDescending(p=>p.OrderDate)
+            .OrderByDescending(p => p.OrderDate)
             .FirstOrDefaultAsync(x => x.UserId == userId);
             return order;
+        }
+
+        public async Task<List<Order>> GetOrdersWithDetailByUserId(int userId)
+        {
+            List<Order>? orders = await _context.Orders
+             .AsNoTracking()
+            .Include(o => o.OrderDetails)
+            .ThenInclude(od => od.Product)
+            .Where(p => p.UserId == userId)
+            .OrderByDescending(p => p.OrderDate).ToListAsync();
+            return orders;
         }
     }
 }

@@ -8,7 +8,6 @@ namespace GenSoftDemoApp.UI.ViewModels.CategoryViewModels
         public int Id { get; set; }
         public string Title { get; set; } = null!;
         public List<ProductViewModel>? Products { get; set; }
-
         [JsonIgnore]
         public int? ProductCount { get; set; }
     }

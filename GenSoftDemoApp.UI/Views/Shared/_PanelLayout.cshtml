@@ -1,0 +1,22 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+@await Component.InvokeAsync("_PanelHeaderComponent")
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        @await Component.InvokeAsync("_PanelNavbarComponent")
+        @await Component.InvokeAsync("_PanelSidebarComponent")
+
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        @await Component.InvokeAsync("_PanelFooterComponent")
+    </div>
+    <!-- ./wrapper -->
+    @await Component.InvokeAsync("_PanelScriptComponent")
+</body>
+</html>

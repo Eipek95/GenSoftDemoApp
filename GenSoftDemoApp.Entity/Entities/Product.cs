@@ -10,8 +10,6 @@ namespace GenSoftDemoApp.Entity.Entities
     {
         public decimal Price { get; set; }
         public string? ImageUrl{ get; set; }
-        public int BrandId { get; set; }
-        public Brand? Brand { get; set; }
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
     }

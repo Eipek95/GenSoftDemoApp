@@ -11,5 +11,6 @@ namespace GenSoftDemoApp.Business.Abstract
         Task<MyResponse<OrderDto>> TGetOrderWithDetailByOrderNumber(string orderNumber);
         Task<MyResponse<NoDataDto>> TUpdateOrder(UpdateOrderDto order);
         Task<MyResponse<OrderDto>> TGetOrderWithDetailByUserId(int userId);
+        Task<MyResponse<List<OrderDto>>> TGetOrdersWithDetailByUserId(int userId);
     }
 }

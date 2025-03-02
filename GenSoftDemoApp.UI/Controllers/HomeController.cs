@@ -37,7 +37,6 @@ public class HomeController : Controller
             {
                 Id = p.Id,
                 Title = p.Title,
-                BrandId = p.BrandId,
                 CategoryId = p.CategoryId,
                 ImageUrl = p.ImageUrl,
                 Price = p.Price,

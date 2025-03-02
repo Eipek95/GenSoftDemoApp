@@ -14,7 +14,7 @@
 </div>
 <!-- Single Page Header End -->
 <!-- Single Product Start -->
-<div class="container-fluid py-5 mt-5">
+<div class="container-fluid py-5 mt-5" id="detailSection">
     <div class="container py-5">
         <div class="row g-4 mb-5">
             <div class="col-lg-8 col-xl-9">
@@ -38,20 +38,23 @@
                         </div>
                         <p class="mb-4">The generated Lorem Ipsum is therefore always free from repetition injected humour, or non-characteristic words etc.</p>
                         <p class="mb-4">Susp endisse ultricies nisi vel quam suscipit. Sabertooth peacock flounder; chain pickerel hatchetfish, pencilfish snailfish</p>
-                        <div class="input-group quantity mb-5" style="width: 100px;">
+                        <div class="input-group quantity mb-2 form-control">
                             <div class="input-group-btn">
                                 <button class="btn btn-sm btn-minus rounded-circle bg-light border">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                            <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                            <input type="text" class="form-control form-control-sm text-center border-0" value="1" id="productQuantity" min="1">
                             <div class="input-group-btn">
                                 <button class="btn btn-sm btn-plus rounded-circle bg-light border">
                                     <i class="fa fa-plus"></i>
                                 </button>
                             </div>
                         </div>
-                        <a href="#" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                        <a href="#" id="addToCartBtn" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary form-control">
+                            <i class="fa fa-shopping-bag me-2 text-primary"></i> Sepete Ekle
+                        </a>
+
                     </div>
                     <div class="col-lg-12">
                         <nav>
@@ -190,3 +193,14 @@
 </div>
 
 
+<script>
+    document.getElementById('addToCartBtn').addEventListener('click', function (e) {
+        e.preventDefault();
+        const quantity = document.getElementById('productQuantity').value;
+        const productId = '@Model.Id'; 
+        const returnUrl = '/Home/Detail?productId=@Model.Id#detailSection';
+
+        const url = `/Cart/AddCart?productId=${productId}&quantity=${quantity}&returnUrl=${encodeURIComponent(returnUrl)}`;
+        window.location.href = url;
+    });
+</script>
