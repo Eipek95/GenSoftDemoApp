@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "GetAll";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
+    int index = 1;
 }
 
 <!-- Google Font: Source Sans Pro -->
@@ -38,10 +39,23 @@
                         <h3 class="card-title">Ürünler</h3>
 
                         <div class="card-tools">
-                            <div class="input-group input-group-sm mb-2" style="width: 150px;">
-                                <input type="text" id="table_search" class="form-control float-right" placeholder="Ürün Adına Göre Ara" oninput="filterTable()">
+                            <div class="d-flex justify-content-between">
+                                <div class="input-group input-group-sm mb-2" style="width: 150px;">
+                                    <input type="text" id="table_search" class="form-control float-right" placeholder="Ürün Adına Göre Ara" oninput="filterTable()">
+                                </div>
+                                <div class="input-group input-group-sm mb-2" style="width: 200px;">
+                                    <select id="category_filter" class="form-control" onchange="filterTable()">
+                                        <option value="">Tüm Kategoriler</option>
+                                        @foreach (var category in Model.Select(m => m.Category?.Title).Distinct())
+                                        {
+                                            <option value="@category">@category</option>
+                                        }
+                                    </select>
+                                </div>
                             </div>
+
                         </div>
+
                     </div>
 
                     <div class="card-body table-responsive p-0">
@@ -60,7 +74,7 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.Id</td>
+                                        <td>@index</td>
                                         <td><img src="@item.ImageUrl" alt="image_@item.Id" style="width:50px" /></td>
                                         <td class="title">@item.Title</td>
                                         <td>@item.Price ₺</td>
@@ -68,17 +82,18 @@
 
                                         <td>
                                             <a asp-action="Update"
-                                               asp-controller="AdminProduct"
-                                               asp-area="Panel"
-                                               asp-route-id="@item.Id" class="btn btn-sm btn-info">Güncelle</a>
+                                            asp-controller="AdminProduct"
+                                            asp-area="Panel"
+                                            asp-route-id="@item.Id" class="btn btn-sm btn-info">Güncelle</a>
 
                                             <button type="button"
-                                                    class="btn btn-sm btn-danger"
-                                                    onclick="confirmDelete(@item.Id)">
+                                            class="btn btn-sm btn-danger"
+                                            onclick="confirmDelete(@item.Id)">
                                                 Sil
                                             </button>
                                         </td>
                                     </tr>
+                                    index++;
                                 }
                             </tbody>
                         </table>
@@ -95,14 +110,19 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 
-       function filterTable() {
-        var input = document.getElementById("table_search").value.toLowerCase().trim();
+    function filterTable() {
+        var searchInput = document.getElementById("table_search").value.toLowerCase().trim();
+        var selectedCategory = document.getElementById("category_filter").value.toLowerCase().trim();
         var rows = document.querySelectorAll("#searchTable tbody tr");
 
         rows.forEach(function (row) {
             var title = row.querySelector(".title").innerText.toLowerCase();
+            var category = row.cells[4].innerText.toLowerCase().trim(); // 5. sütun (Kategori)
 
-            if (title.includes(input)) {
+            var matchTitle = title.includes(searchInput);
+            var matchCategory = (selectedCategory === "" || category === selectedCategory);
+
+            if (matchTitle && matchCategory) {
                 row.style.display = "";
             } else {
                 row.style.display = "none";
@@ -111,6 +131,7 @@
     }
 
 </script>
+
 <script>
         function confirmDelete(id) {
         Swal.fire({

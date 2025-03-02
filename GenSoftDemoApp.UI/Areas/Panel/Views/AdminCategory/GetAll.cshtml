@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "GetAll";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
+    int index = 1;
 }
 
 <!-- Google Font: Source Sans Pro -->
@@ -57,22 +58,23 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.Id</td>
+                                        <td>@index</td>
                                         <td class="title">@item.Title</td>
 
                                         <td>
                                             <a asp-action="Update"
-                                               asp-controller="AdminCategory"
-                                               asp-area="Panel"
-                                               asp-route-id="@item.Id" class="btn btn-sm btn-info">Güncelle</a>
+                                            asp-controller="AdminCategory"
+                                            asp-area="Panel"
+                                            asp-route-id="@item.Id" class="btn btn-sm btn-info">Güncelle</a>
 
                                             <button type="button"
-                                                    class="btn btn-sm btn-danger"
-                                                    onclick="confirmDelete(@item.Id)">
+                                            class="btn btn-sm btn-danger"
+                                            onclick="confirmDelete(@item.Id)">
                                                 Sil
                                             </button>
                                         </td>
                                     </tr>
+                                    index++;
                                 }
                             </tbody>
                         </table>
