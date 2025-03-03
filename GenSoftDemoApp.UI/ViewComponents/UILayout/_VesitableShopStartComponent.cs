@@ -17,7 +17,7 @@ namespace GenSoftDemoApp.UI.ViewComponents.UILayout
         {
 
             var response = await _client.GetFromJsonAsync<ResponseModel<List<CategoryViewModel>>>("Categories/GetAllCategoryWithProducts");
-            List<ProductViewModel>? vesitables = response.data.Where(x => x.Id == 3).Select(x => x.Products).Take(5).FirstOrDefault();
+            List<ProductViewModel>? vesitables = response.data.Where(x => x.Title.ToLower() == "sebze").Select(x => x.Products).Take(5).FirstOrDefault();
             return View(vesitables);
         }
     }

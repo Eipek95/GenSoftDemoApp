@@ -5,11 +5,13 @@ using GenSoftDemoApp.UI.ViewModels;
 using GenSoftDemoApp.UI.ViewModels.CartViewModels;
 using GenSoftDemoApp.UI.ViewModels.OrderViewModels;
 using GenSoftDemoApp.UI.ViewModels.ProductViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stripe.Checkout;
 
 namespace GenSoftDemoApp.UI.Controllers
 {
+    [Authorize]
     public class CheckoutController : Controller
     {
         private readonly HttpClient _client;

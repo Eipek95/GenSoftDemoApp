@@ -45,11 +45,9 @@ namespace GenSoftDemoApp.DataAccess.Concrete
         public async Task<HttpStatusCode> UpdateOrder(Order order)
         {
             var existingOrder = await _context.Orders
-                .AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Id == order.Id);
             if (existingOrder is null)
                 return HttpStatusCode.NotFound;
-
 
             existingOrder.Status = order.Status;
             await _context.SaveChangesAsync();

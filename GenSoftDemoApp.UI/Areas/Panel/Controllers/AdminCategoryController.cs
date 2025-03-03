@@ -3,11 +3,13 @@ using GenSoftDemoApp.UI.Services.TokenServices;
 using GenSoftDemoApp.UI.ViewModels;
 using GenSoftDemoApp.UI.ViewModels.CategoryViewModels;
 using GenSoftDemoApp.UI.ViewModels.OrderViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GenSoftDemoApp.UI.Areas.Panel.Controllers
 {
     [Area("Panel")]
+    [Authorize(Roles ="Admin")]
     public class AdminCategoryController : Controller
     {
         private readonly HttpClient _client;

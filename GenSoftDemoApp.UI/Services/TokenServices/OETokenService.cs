@@ -18,8 +18,10 @@ namespace GenSoftDemoApp.UI.Services.TokenServices
 
         public string GetUserRole => _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.Role)?.Value;
 
+        public string GetUsername => _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
 
-        //public bool IsInAdminRole => _contextAccessor.HttpContext.User.IsInRole("Admin");
+
+        public bool IsInAdminRole => _contextAccessor.HttpContext.User.IsInRole("Admin");
 
         //public bool IsInStudentRole => _contextAccessor.HttpContext.User.IsInRole("Student");
     }

@@ -2,12 +2,14 @@
 using GenSoftDemoApp.UI.Services.TokenServices;
 using GenSoftDemoApp.UI.ViewModels.CategoryViewModels;
 using GenSoftDemoApp.UI.ViewModels.ProductViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GenSoftDemoApp.UI.Areas.Panel.Controllers
 {
     [Area("Panel")]
+    [Authorize(Roles = "Admin")]
     public class AdminProductController : Controller
     {
         private readonly HttpClient _client;

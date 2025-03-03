@@ -39,7 +39,7 @@
                     <h5><i class="fas fa-info"></i> Not:</h5>
                     Bu Sayfada sipariş detaylarını görebilir,iptal edebilir ve oluşturulan fatura ile çıktı alabilirsiniz.
                     <br />
-                    <span class="badge badge-danger">Sipariş, Sipariş Durumu <b>Alındı</b> ise aşamasında iptal edilebilir.</span>
+                    <span class="badge badge-danger">Sipariş, Sipariş Durumu <b>Alındı</b> aşamasında ise iptal edilebilir.</span>
                 </div>
 
 
@@ -99,10 +99,7 @@
                                     <span class="badge badge-success">Teslim Edildi</span>
                                 }
                             }
-
                             <br>
-
-
                         </div>
                         <!-- /.col -->
                     </div>
@@ -182,7 +179,10 @@
                     <!-- this row will not appear when printing -->
                     <div class="row no-print">
                         <div class="col-12">
-                            <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                            <a href="javascript:void(0);" onclick="printPage()" class="btn btn-default">
+                                <i class="fas fa-print"></i> Yazdır
+                            </a>
+
                             @if (Model.Status != OrderStatus.Received)
                             {
                                 <button type="button" class="btn btn-danger float-right" disabled>
@@ -191,9 +191,12 @@
                             }
                             else
                             {
-                                <button type="button" class="btn btn-danger float-right">
+                                <button type="button"
+                                        class="btn btn-danger float-right"
+                                        onclick="confirmCancel(@Model.Id)">
                                     Siparişi İptal Et
                                 </button>
+
                             }
                         </div>
                     </div>
@@ -203,3 +206,27 @@
         </div>
     </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmCancel(orderId) {
+        Swal.fire({
+            title: 'Emin misiniz?',
+            text: 'Bu siparişi iptal etmek istediğinize emin misiniz?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Evet, İptal Et',
+            cancelButtonText: 'Hayır'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // SweetAlert onaylandıysa yönlendir
+                window.location.href = `/panel/home/update?id=${orderId}&status=@((int)OrderStatus.Cancelled)`;
+            }
+        });
+    }
+</script>
+
+<script>
+    function printPage() {
+        window.print(); // Tarayıcının yazdırma penceresini açar (Ctrl + P efekti)
+    }
+</script>

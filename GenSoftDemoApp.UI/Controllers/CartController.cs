@@ -3,10 +3,12 @@ using GenSoftDemoApp.UI.Services.SessionServices;
 using GenSoftDemoApp.UI.Services.TokenServices;
 using GenSoftDemoApp.UI.ViewModels.CartViewModels;
 using GenSoftDemoApp.UI.ViewModels.ProductViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GenSoftDemoApp.UI.Controllers
 {
+    [Authorize]
     public class CartController : Controller
     {
         private readonly HttpClient _client;
@@ -23,10 +25,7 @@ namespace GenSoftDemoApp.UI.Controllers
         public async Task<IActionResult> AddCart(int productId, int quantity, string? returnUrl)
         {
 
-            if (_tokenService.GetUserId == 0)
-                return RedirectToAction("Login", "Auth");
-
-
+            
             var response = await _client.GetFromJsonAsync<ResponseModel<ProductViewModel>>("Products/GetById/" + productId);
 
             if (response.error is not null)

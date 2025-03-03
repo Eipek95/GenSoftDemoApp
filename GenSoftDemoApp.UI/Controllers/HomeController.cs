@@ -3,7 +3,6 @@ using GenSoftDemoApp.UI.Models;
 using GenSoftDemoApp.UI.ViewModels.CategoryViewModels;
 using GenSoftDemoApp.UI.ViewModels.ProductViewModels;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace GenSoftDemoApp.UI.Controllers;
 
@@ -44,12 +43,10 @@ public class HomeController : Controller
             }))
             .AsQueryable();
 
-        if (price > 0 )
+        if (price > 0)
             allProducts = allProducts.Where(x => x.Price <= price);
         if (categoryId > 0)
             allProducts = allProducts.Where(x => x.CategoryId == categoryId);
-        //if (price > 0 && categoryId > 0)
-        //    allProducts = allProducts.Where(x => x.CategoryId == categoryId && x.Price <= price);
 
 
         int pageSize = 9;
@@ -83,7 +80,6 @@ public class HomeController : Controller
         };
 
         if (price > 0) result.Price = price;
-        //if (categoryId > 0) result.CategoryId = categoryId;
 
         return View(result);
     }
@@ -100,17 +96,22 @@ public class HomeController : Controller
 
             return View();
         }
-        return View(response.data);
+
+        List<ProductDetailCommentViewModel> comments = ProductDetailCommentViewModel.GenerateRandomComments(); // Yorumlarý oluþtur
+
+        ProductDetailPageViewModel viewModel = new ProductDetailPageViewModel
+        {
+            Product = response.data,
+            Comments = comments
+        };
+
+
+        return View(viewModel);
     }
 
     [HttpGet]
     public IActionResult Contact()
     {
         return View();
-    }
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }

@@ -41,17 +41,14 @@
                     <a asp-action="Contact" asp-controller="Home" class="nav-item nav-link">İletişim</a>
                 </div>
                 <div class="d-flex m-3 me-0" title="Arama">
-                    <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
-
-
-
+                   
                     @if (!string.IsNullOrEmpty(@User.Identity?.Name))
                     {
                         <a asp-action="MyCart" asp-controller="Cart" class="position-relative me-4 my-auto" title="Sepetim">
                             <i class="fa fa-shopping-bag fa-2x"></i>
                             <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">@ViewBag.Count</span>
                         </a>
-                        <a href="#" class="my-auto me-4" title="Panele Git">
+                        <a href="/panel" class="my-auto me-4" title="Panele Git">
                             <i class="fas fa-user fa-2x"></i>
                         </a>
                         <a href="/Auth/Logout" class="my-auto me-4" title="Çıkış Yap">

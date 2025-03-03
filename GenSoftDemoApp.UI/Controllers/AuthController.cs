@@ -5,20 +5,18 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GenSoftDemoApp.UI.Controllers
 {
 
     public class AuthController : Controller
     {
-
-        
         private readonly HttpClient _client;
         public AuthController(IHttpClientFactory clientFactory)
         {
             _client = clientFactory.CreateClient("GemSoftAppClient");
         }
-
 
         public IActionResult Register()
         {
@@ -81,11 +79,11 @@ namespace GenSoftDemoApp.UI.Controllers
             ModelState.AddModelError("", "Kullanıcı Adı veya Şifre Hatalı");
             return View();
         }
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Auth");
         }
-
     }
 }

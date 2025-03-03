@@ -92,14 +92,20 @@
                                             <p>
                                                 Ut fusce varius nisl ac ipsum gravida vel pretium tellus tincidunt integer eu augue augue nunc elit dolor, luctus placerat.
                                             </p>
-                                            <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0">@product.Price ₺</p>
+                                            <div class="d-flex justify-content-between flex-lg-wrap mt-3">
                                                 <a asp-controller="Cart" asp-action="AddCart"
                                                    asp-route-productId="@product.Id"
                                                    asp-route-quantity="1"
                                                    asp-route-returnUrl="/#fruitsShopSection"
                                                    class="btn border border-secondary rounded-pill px-3 text-primary">
                                                     <i class="fa fa-shopping-bag me-2 text-primary"></i> Sepete Ekle
+                                                </a>
+
+                                                <a asp-action="Detail"
+                                                   asp-route-productId="@product.Id"
+                                                   class="btn border border-secondary rounded-pill px-3 text-primary" title="İncele">
+                                                    <i class="fa fa-eye text-primary me-2"></i>İncele
                                                 </a>
                                             </div>
                                         </div>

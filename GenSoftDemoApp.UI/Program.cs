@@ -29,9 +29,9 @@ builder.Services.AddHttpClient("GemSoftAppClient", cfg =>
 });
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddCookie(JwtBearerDefaults.AuthenticationScheme, opt =>
 {
-    opt.LoginPath = "/Home/Login";
-    opt.LogoutPath = "/Login/Logout";
-    opt.AccessDeniedPath = "/ErrorPage/AccessDenied";
+    opt.LoginPath = "/Auth/Login";
+    opt.LogoutPath = "/Auth/Logout";
+    opt.AccessDeniedPath = "/accessdenied";
     opt.Cookie.SameSite = SameSiteMode.Lax; // Stripe gibi 3. parti yönlendirmeleri için uygundur
     opt.Cookie.HttpOnly = true;
     opt.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
@@ -62,7 +62,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseStatusCodePagesWithReExecute("/ErrorPage/NotFound404/");
+app.UseStatusCodePagesWithReExecute("/notfound404");
 
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("StripeSettings:SecretKey").Get<string>();
 
