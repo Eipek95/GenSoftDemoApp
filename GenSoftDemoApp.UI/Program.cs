@@ -1,7 +1,6 @@
 using GenSoftDemoApp.UI.Helpers;
 using GenSoftDemoApp.UI.Services.SessionServices;
 using GenSoftDemoApp.UI.Services.TokenServices;
-using GenSoftDemoApp.UI.Services.UserServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Stripe;
 using System.Net.Http.Headers;
@@ -13,7 +12,6 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<CartService>();
 
-builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, OETokenService>();
 
 builder.Services.AddHttpClient("GemSoftAppClient", cfg =>
