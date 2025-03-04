@@ -6,11 +6,12 @@ namespace GenSoftDemoApp.Business.Abstract
 {
     public interface IRoleService
     {
-        Task<MyResponse<List<AppRole>>> GetAll();
+        Task<MyResponse<List<RoleDto>>> GetAll();
+        Task<MyResponse<List<AssignRoleDto>>> GetUserForRoleAssignByUserId(int id);
+        Task<MyResponse<RoleDto>> GetRoleById(int id);
         Task<MyResponse<string>> CreateRoleAsync(CreateRoleDto createRoleDto);
+        Task<MyResponse<string>> UpdateRoleAsync(UpdateRoleDto updateRoleDto);
         Task<MyResponse<string>> DeleteRoleAsync(int id);
-
-        //eklenecek
-        Task<MyResponse<string>> AssignRoleAsync(List<AssignRoleDto> assignRoleDto);
+        Task<MyResponse<string>> AssignRoleAsync(List<CreateAssignRoleDto> assignRoleDto);
     }
 }

@@ -73,6 +73,8 @@ namespace GenSoftDemoApp.DataAccess.Concrete
             .ThenInclude(od => od.Product)
             .Where(p => p.UserId == userId)
             .OrderByDescending(p => p.OrderDate).ToListAsync();
+            
+
             return orders;
         }
     }

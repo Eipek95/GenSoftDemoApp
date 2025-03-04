@@ -12,15 +12,23 @@ namespace GenSoftDemoApp.API.Controllers
     {
         [HttpPost]
         public async Task<IActionResult> CreateRole(CreateRoleDto model) => ActionResultInstance(await _roleService.CreateRoleAsync(model));
-
-        [HttpPost]
-        public async Task<IActionResult> GetAll() => ActionResultInstance(await _roleService.GetAll());
-
-        [HttpPost]
-        public async Task<IActionResult> DeleteRole(int id) => ActionResultInstance(await _roleService.DeleteRoleAsync(id));
+        
+        [HttpPut]
+        public async Task<IActionResult> UpdateRole(UpdateRoleDto model) => ActionResultInstance(await _roleService.UpdateRoleAsync(model));
 
         [HttpGet]
-        public async Task<IActionResult> AssignRole(List<AssignRoleDto> assigns) => ActionResultInstance(await _roleService.AssignRoleAsync(assigns));
+        public async Task<IActionResult> GetAll() => ActionResultInstance(await _roleService.GetAll()); 
+        
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetRoleById(int id) => ActionResultInstance(await _roleService.GetRoleById(id));
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRole(int id) => ActionResultInstance(await _roleService.DeleteRoleAsync(id));
+
+        [HttpPost]
+        public async Task<IActionResult> AssignRole(List<CreateAssignRoleDto> assigns) => ActionResultInstance(await _roleService.AssignRoleAsync(assigns));
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserForRoleAssignByUserId(int id) => ActionResultInstance(await _roleService.GetUserForRoleAssignByUserId(id));
 
     }
 }

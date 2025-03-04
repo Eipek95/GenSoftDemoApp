@@ -3,6 +3,7 @@ using GenSoftDemoApp.UI.Services.TokenServices;
 using GenSoftDemoApp.UI.ViewModels.OrderViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace GenSoftDemoApp.UI.Areas.Panel.Controllers
 {
@@ -22,7 +23,17 @@ namespace GenSoftDemoApp.UI.Areas.Panel.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var response = await _client.GetFromJsonAsync<ResponseModel<List<OrderViewModel>>>("Orders/GetAll/");
+
+            var request = new HttpRequestMessage(HttpMethod.Get, "Orders/GetAll/");
+
+            var httpResponse = await _client.SendAsync(request);
+
+            if (httpResponse.StatusCode == HttpStatusCode.NotFound)
+                return View(new List<OrderViewModel>());
+
+            httpResponse.EnsureSuccessStatusCode();
+            var response = await httpResponse.Content.ReadFromJsonAsync<ResponseModel<List<OrderViewModel>>>();
+
             if (response.error is not null)
             {
                 foreach (var item in response.error.errors)
@@ -32,8 +43,8 @@ namespace GenSoftDemoApp.UI.Areas.Panel.Controllers
             }
             List<OrderViewModel> orders = response.data;
             return View(orders);
-        } 
-        
+        }
+
         [HttpGet]
         public async Task<IActionResult> Update(int orderId)
         {
@@ -54,9 +65,9 @@ namespace GenSoftDemoApp.UI.Areas.Panel.Controllers
 
         }
         [HttpPost]
-        public async Task<IActionResult> Update(UpdateOrderViewModel model )
+        public async Task<IActionResult> Update(UpdateOrderViewModel model)
         {
-           
+
             var updateResult = await _client.PutAsJsonAsync<UpdateOrderViewModel>("Orders/Update", model);
             var updateResponse = await updateResult.Content.ReadFromJsonAsync<ResponseModel<NoDataViewModel>>();
 

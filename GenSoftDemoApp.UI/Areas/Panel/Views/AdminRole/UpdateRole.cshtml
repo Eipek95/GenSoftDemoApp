@@ -1,8 +1,10 @@
-﻿@model CreateCategoryViewModel
+﻿@model UpdateRoleViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "UpdateRole";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
 }
+
+
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
@@ -15,12 +17,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Kaydet</h1>
+                <h1>Düzenle</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/panel">Panel</a></li>
-                    <li class="breadcrumb-item active">Kaydet</li>
+                    <li class="breadcrumb-item active">Düzenle</li>
                 </ol>
             </div>
         </div>
@@ -34,17 +36,23 @@
                 <div class="card card-primary">
                     <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert">
                     </div>
-                    <form method="post" action="Create">
+                    <form method="post" action="UpdateRole">
+
                         <div class="card-body">
                             <div class="form-group">
-                                <label asp-for="Title">Kategori Adı</label>
-                                <input type="text" asp-for="Title" class="form-control" placeholder="Kategori Adı">
-                                <span class="text-danger" asp-validation-for="Title"></span>
+                                <label asp-for="Id">Id</label>
+                                <input type="text" asp-for="Id" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label asp-for="Name">Rol Adı</label>
+                                <input type="text" asp-for="Name" class="form-control" placeholder="Rol Adı" required>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Kaydet</button>
-                            <a asp-action="GetAll" asp-controller="AdminCategory" asp-area="Panel" class="btn btn-info">Kategorileri Gör</a>
+                            <button type="submit" class="btn btn-primary">Düzenle</button>
+                            <a asp-action="GetRoles" asp-controller="AdminRole" asp-area="Panel" class="btn btn-info">Rolleri Gör</a>
                         </div>
                     </form>
                 </div>
@@ -53,8 +61,6 @@
     </div>
 </section>
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-                          
+
+

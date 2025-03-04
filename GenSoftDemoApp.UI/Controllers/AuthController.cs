@@ -26,7 +26,7 @@ namespace GenSoftDemoApp.UI.Controllers
         public async Task<IActionResult> Register(RegisterViewModel entity)
         {
             var result = await _client.PostAsJsonAsync("Auth/Register", entity);
-            var response = await result.Content.ReadFromJsonAsync<ResponseModel<RegisterViewModel>>();
+            var response = await result.Content.ReadFromJsonAsync<ResponseModel<string>>();
 
             if (response.error is not null)
             {

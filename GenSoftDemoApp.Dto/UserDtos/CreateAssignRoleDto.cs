@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GenSoftDemoApp.Dto.UserDtos
 {
-    public class UserRoleDto
+    public class CreateAssignRoleDto
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public List<string> Roles { get; set; }
+        public int UserId { get; set; }
+        public int RoleId { get; set; }
+        public bool RoleExist { get; set; }
     }
 }

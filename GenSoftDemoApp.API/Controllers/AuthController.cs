@@ -1,11 +1,7 @@
-﻿using AutoMapper;
-using GenSoftDemoApp.Business.Abstract;
+﻿using GenSoftDemoApp.Business.Abstract;
 using GenSoftDemoApp.Dto.UserDtos;
-using GenSoftDemoApp.Entity.Entities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace GenSoftDemoApp.API.Controllers
 {
@@ -24,10 +20,17 @@ namespace GenSoftDemoApp.API.Controllers
         [Authorize]
         public async Task<IActionResult> ChangePassword(ChangePasswordDto model) => ActionResultInstance(await _userService.ChangePassword(model));
 
-        [Authorize]
-        [HttpGet()]
-        public async Task<IActionResult> GetUserId() => ActionResultInstance(await _userService.GetUserId());
-
-        
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAllUsers() => ActionResultInstance(await _userService.GetAllUsersAsync());
+        [HttpGet("{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetUserById(int id) => ActionResultInstance(await _userService.GetUserByIdAsync(id));
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetUserWithRoleById(int id) => ActionResultInstance(await _userService.GetUserWithRoleByIdAsync(id));
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> GetAllUsersWithRole() => ActionResultInstance(await _userService.GetAllUsersWithRoleAsync());
     }
 }

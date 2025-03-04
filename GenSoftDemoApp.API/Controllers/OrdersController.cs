@@ -26,16 +26,14 @@ namespace GenSoftDemoApp.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetOrderWithDetailByOrderNumber(string orderNumber) => ActionResultInstance(await _orderService.TGetOrderWithDetailByOrderNumber(orderNumber));
 
-        [Authorize(Roles ="Admin")]
+        
         [HttpPost]
         public async Task<IActionResult> Create(CreateOrderDto orderDto) => ActionResultInstance(await _orderService.TCreate(orderDto));
 
-        [Authorize(Roles ="Admin")]
         [HttpPut]
         public async Task<IActionResult> Update(UpdateOrderDto updateOrderDto) => ActionResultInstance(await _orderService.TUpdateOrder(updateOrderDto));
 
         [HttpDelete]
-        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Delete(int id) => ActionResultInstance(await _orderService.TDelete(id));
     }
 }

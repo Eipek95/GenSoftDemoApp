@@ -1,15 +1,8 @@
-﻿@model CreateCategoryViewModel
+﻿@model CreateRoleViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "CreateRole";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
 }
-<!-- Google Font: Source Sans Pro -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-<!-- Font Awesome -->
-<link rel="stylesheet" href="~/panel/plugins/fontawesome-free/css/all.min.css">
-<!-- Theme style -->
-<link rel="stylesheet" href="~/panel/dist/css/adminlte.min.css">
-
 
 <section class="content-header">
     <div class="container-fluid">
@@ -26,7 +19,6 @@
         </div>
     </div>
 </section>
-
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -34,27 +26,22 @@
                 <div class="card card-primary">
                     <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert">
                     </div>
-                    <form method="post" action="Create">
+                    <form method="post" asp-action="CreateRole">
                         <div class="card-body">
                             <div class="form-group">
-                                <label asp-for="Title">Kategori Adı</label>
-                                <input type="text" asp-for="Title" class="form-control" placeholder="Kategori Adı">
-                                <span class="text-danger" asp-validation-for="Title"></span>
+                                <label asp-for="Name">Rol Adı</label>
+                                <input type="text" asp-for="Name" class="form-control" required>
                             </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Kaydet</button>
-                            <a asp-action="GetAll" asp-controller="AdminCategory" asp-area="Panel" class="btn btn-info">Kategorileri Gör</a>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-                          

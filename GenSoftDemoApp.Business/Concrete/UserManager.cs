@@ -5,6 +5,7 @@ using GenSoftDemoApp.Dto.ResponseDtos;
 using GenSoftDemoApp.Dto.UserDtos;
 using GenSoftDemoApp.Entity.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace GenSoftDemoApp.Business.Concrete
@@ -62,14 +63,60 @@ namespace GenSoftDemoApp.Business.Concrete
 
         }
 
-
-        public async Task<MyResponse<string>> GetUserId()
+        public async Task<MyResponse<List<UserDto>>> GetAllUsersAsync()
         {
-            var user = await _userManager.FindByNameAsync(ClaimsPrincipal.Current.Identity.Name);
-            if (user is null)
-                return MyResponse<string>.Fail(new ErrorDto("Kullanıcı Bulunamadı", false), 404);
+            var users = await _userManager.Users.ToListAsync();
+            if (!users.Any())
+                return MyResponse<List<UserDto>>.Fail(new ErrorDto("Kullanıcı Bulunamadı", false), 404);
 
-            return MyResponse<string>.Success(user.Id.ToString(), 200);
+            var map = _mapper.Map<List<UserDto>>(users);
+            return MyResponse<List<UserDto>>.Success(map, 200);
+
+        }
+
+        public async Task<MyResponse<List<UserRoleDto>>> GetAllUsersWithRoleAsync()
+        {
+            var users = await _userManager.Users.ToListAsync();
+
+            if (!users.Any())
+                return MyResponse<List<UserRoleDto>>.Fail(new ErrorDto("Kullanıcı Bulunamadı", false), 404);
+
+            List<UserRoleDto> userRoleList = (from user in users
+                                              select new UserRoleDto
+                                              {
+                                                  Id = user.Id,
+                                                  UserName = user.UserName,
+                                                  Roles = _userManager.GetRolesAsync(user).Result.ToList(),
+
+                                              }).ToList();
+
+            return MyResponse<List<UserRoleDto>>.Success(userRoleList, 200);
+        }
+
+        public async Task<MyResponse<UserDto>> GetUserByIdAsync(int id)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
+            if (user is null)
+                return MyResponse<UserDto>.Fail(new ErrorDto("Kullanıcı Bulunamadı", false), 404);
+
+            var map= _mapper.Map<UserDto>(user);
+            return MyResponse<UserDto>.Success(map, 200);
+
+        }
+
+        public async Task<MyResponse<UserRoleDto>> GetUserWithRoleByIdAsync(int id)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == id);
+            if (user is null)
+                return MyResponse<UserRoleDto>.Fail(new ErrorDto("Kullanıcı Bulunamadı", false), 404);
+
+            var userRole = new UserRoleDto
+            {
+                Id = id,
+                Roles=_userManager.GetRolesAsync(user).Result.ToList(),
+                UserName=user.UserName
+            };
+            return MyResponse<UserRoleDto>.Success(userRole, 200);
         }
 
         public async Task<MyResponse<LoginResponseDto>> LoginAsync(LoginDto userLoginDto)

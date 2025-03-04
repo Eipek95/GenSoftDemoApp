@@ -8,8 +8,7 @@ namespace GenSoftDemoApp.DataAccess.Configurations
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.Property(x=>x.Title).HasColumnType("nvarchar(100)");   
-            builder.Property(x=>x.ImageUrl).HasColumnType("nvarchar(256)");   
+            builder.Property(x=>x.Title).HasColumnType("nvarchar(256)");   
             builder.Property(x=>x.Price).HasColumnType("decimal(18,2)"); 
         }
     }

@@ -97,7 +97,7 @@ namespace GenSoftDemoApp.UI.Controllers
                 };
 
                 var result = await _client.PostAsJsonAsync("Orders/Create", order);
-                var response = await result.Content.ReadFromJsonAsync<ResponseModel<CreateOrderViewModel>>();
+                var response = await result.Content.ReadFromJsonAsync<ResponseModel<NoDataViewModel>>();
 
                 if (response.error is not null)
                 {

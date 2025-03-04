@@ -6,6 +6,7 @@ using GenSoftDemoApp.UI.ViewModels.OrderViewModels;
 using GenSoftDemoApp.UI.ViewModels.ProductViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace GenSoftDemoApp.UI.Areas.Panel.Controllers
 {
@@ -28,7 +29,18 @@ namespace GenSoftDemoApp.UI.Areas.Panel.Controllers
                 return View();
 
             ViewBag.role = "admin";
-            var response = await _client.GetFromJsonAsync<ResponseModel<List<OrderViewModel>>>("Orders/GetAll/");
+
+            var request = new HttpRequestMessage(HttpMethod.Get, "Orders/GetAll/");
+
+            var httpResponse = await _client.SendAsync(request);
+
+            if (httpResponse.StatusCode == HttpStatusCode.NotFound)
+                return View(new List<OrderViewModel>());
+
+            httpResponse.EnsureSuccessStatusCode();
+            var response = await httpResponse.Content.ReadFromJsonAsync<ResponseModel<List<OrderViewModel>>>();
+
+
             if (response.error is not null)
             {
                 foreach (var item in response.error.errors)
@@ -53,14 +65,25 @@ namespace GenSoftDemoApp.UI.Areas.Panel.Controllers
         [HttpGet]
         public async Task<IActionResult> MyOrders()
         {
-            var response = await _client.GetFromJsonAsync<ResponseModel<List<OrderViewModel>>>("Orders/GetOrdersWithDetailByUserId/" + _tokenService.GetUserId);
+            var request = new HttpRequestMessage(HttpMethod.Get, "Orders/GetOrdersWithDetailByUserId/" + _tokenService.GetUserId);
+
+            var httpResponse = await _client.SendAsync(request);
+
+            if (httpResponse.StatusCode == HttpStatusCode.NotFound)
+                return View(new List<OrderViewModel>());
+            
+
+            httpResponse.EnsureSuccessStatusCode();
+            var response = await httpResponse.Content.ReadFromJsonAsync<ResponseModel<List<OrderViewModel>>>();
+
             if (response.error is not null)
             {
                 foreach (var item in response.error.errors)
                     ModelState.AddModelError("", item);
 
-                return View();
+                return View(new List<OrderViewModel>());
             }
+
             List<OrderViewModel> orders = response.data;
 
             return View(orders);

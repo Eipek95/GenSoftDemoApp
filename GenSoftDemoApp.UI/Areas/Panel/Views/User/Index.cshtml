@@ -1,7 +1,109 @@
-﻿
+﻿@model List<UserRoleViewModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
+    int index = 1;
 }
 
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="~/panel/plugins/fontawesome-free/css/all.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" href="~/panel/dist/css/adminlte.min.css">
 
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Kullanıcılar</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/panel">Panel</a></li>
+                    <li class="breadcrumb-item active">Kullanıcılar</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Kullanıcılar</h3>
+
+
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm mb-2" style="width: 150px;">
+                                <input type="text" id="table_search" class="form-control float-right" placeholder="Kullanıcı Adına Göre Ara" oninput="filterTable()">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap" id="searchTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Kullanıcı Adı</th>
+                                    <th>Roller</th>
+                                    <th>Rol Ata</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@index</td>
+                                        <td class="userName">@item.UserName</td>
+                                        <td>
+                                            @foreach (var role in item.Roles)
+                                            {
+                                                <span class="badge bg-dark text-white">@role</span>
+                                            }
+                                        </td>
+                                        <td>
+                                            <a asp-action="AssignRole"
+                                               asp-controller="User"
+                                               asp-area="Panel"
+                                               asp-route-id="@item.Id" class="btn btn-sm btn-info">Rol Ata</a>
+                                        </td>
+                                    </tr>
+                                    index++;
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<script>
+
+       function filterTable() {
+        var input = document.getElementById("table_search").value.toLowerCase().trim();
+        var rows = document.querySelectorAll("#searchTable tbody tr");
+
+        rows.forEach(function (row) {
+            var userName = row.querySelector(".userName").innerText.toLowerCase();
+
+            if (userName.includes(input)) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });
+    }
+
+</script>

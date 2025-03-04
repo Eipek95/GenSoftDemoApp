@@ -1,4 +1,5 @@
 ﻿using GenSoftDemoApp.UI.ViewModels.ProductViewModels;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace GenSoftDemoApp.UI.ViewModels.CategoryViewModels

@@ -1,8 +1,7 @@
-﻿@model List<CategoryViewModel>
+﻿@model List<RoleViewModel>
 @{
-    ViewData["Title"] = "GetAll";
+    ViewData["Title"] = "GetRoles";
     Layout = "~/Views/Shared/_PanelLayout.cshtml";
-    int index = 1;
 }
 
 <!-- Google Font: Source Sans Pro -->
@@ -17,12 +16,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Kategoriler</h1>
+                <h1>Roller</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/panel">Panel</a></li>
-                    <li class="breadcrumb-item active">Kategoriler</li>
+                    <li class="breadcrumb-item active">Roller</li>
                 </ol>
             </div>
         </div>
@@ -36,45 +35,54 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Kategoriler</h3>
+                        <h3 class="card-title">Roller</h3>
 
                         <div class="card-tools">
                             <div class="input-group input-group-sm mb-2" style="width: 150px;">
-                                <input type="text" id="table_search" class="form-control float-right" placeholder="Kategori Adına Göre Ara" oninput="filterTable()">
+                                <input type="text" id="table_search" class="form-control float-right" placeholder="Rol Adına Göre Ara" oninput="filterTable()">
                             </div>
                         </div>
                     </div>
 
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap" id="searchTable">
+                        <table class="table table-hover text-nowrap" id="roleTable">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Kategori Adı</th>
+                                    <th>Rol Adı</th>
                                     <th>İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @foreach (var role in Model)
                                 {
-                                    <tr>
-                                        <td>@index</td>
-                                        <td class="title">@item.Title</td>
+                                    if (role.Name=="Admin" || role.Name=="User")
+                                    {
+                                        <tr readonly>
+                                            <td>@role.Id</td>
+                                            <td class="roleName">@role.Name</td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td>@role.Id</td>
+                                            <td class="roleName">@role.Name</td>
+                                            <td>
 
-                                        <td>
-                                            <a asp-action="Update"
-                                            asp-controller="AdminCategory"
-                                            asp-area="Panel"
-                                            asp-route-id="@item.Id" class="btn btn-sm btn-info">Güncelle</a>
+                                                <a asp-action="UpdateRole" asp-controller="AdminRole" asp-area="Panel" asp-route-id="@role.Id" class="btn btn-sm btn-success">Güncelle</a>
 
-                                            <button type="button"
-                                            class="btn btn-sm btn-danger"
-                                            onclick="confirmDelete(@item.Id)">
-                                                Sil
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    index++;
+                                                <button type="button"
+                                                        class="btn btn-sm btn-danger"
+                                                        onclick="confirmDelete(@role.Id)">
+                                                    Sil
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                    
                                 }
                             </tbody>
                         </table>
@@ -82,34 +90,33 @@
                 </div>
             </div>
         </div>
-        <a asp-action="Create" asp-controller="AdminCategory" asp-area="Panel" class="btn btn-info mb-3">Kategori Ekle</a>
-
+        <a asp-action="CreateRole" asp-controller="AdminRole" asp-area="Panel" class="btn btn-info mb-3">Rol Ekle</a>
     </div>
 </section>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-
        function filterTable() {
         var input = document.getElementById("table_search").value.toLowerCase().trim();
-        var rows = document.querySelectorAll("#searchTable tbody tr");
+        var rows = document.querySelectorAll("#roleTable tbody tr");
 
         rows.forEach(function (row) {
-            var title = row.querySelector(".title").innerText.toLowerCase();
+            var roleName = row.querySelector(".roleName").innerText.toLowerCase();
 
-            if (title.includes(input)) {
+            if (roleName.includes(input)) {
                 row.style.display = "";
             } else {
                 row.style.display = "none";
             }
         });
     }
-
 </script>
+
 <script>
         function confirmDelete(id) {
         Swal.fire({
             title: 'Emin misiniz?',
-            text: "Bu kategoriyi silmek istediğinize emin misiniz?",
+            text: "Bu rolü silmek istediğinize emin misiniz?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -119,7 +126,7 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 // Silme işlemi için yönlendirme yapalım
-                window.location.href = `/Panel/AdminCategory/Delete/${id}`;
+                window.location.href = `/Panel/User/DeleteRole/${id}`;
             }
         });
     }

@@ -21,7 +21,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Panel</a></li>
+                    <li class="breadcrumb-item"><a href="/panel">Panel</a></li>
                     <li class="breadcrumb-item active">Siparişler</li>
                 </ol>
             </div>
@@ -29,92 +29,113 @@
     </div>
 </section>
 
-<section class="content">
-    <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Siparişler</h3>
 
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm mb-2" style="width: 150px;">
-                                <input type="text" id="table_search" class="form-control float-right" placeholder="Sipariş Numarası Ara" oninput="filterTable()">
-                            </div>
-                        </div>
-                    </div>
+@if (!Model.Any())
+{
+    <section class="content">
+        <div class="container-fluid">
 
-                    <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap" id="orderTable">
-                            <thead>
-                                <tr>
-                                    <th>Sipariş Numarası</th>
-                                    <th>Sipariş Tutarı</th>
-                                    <th>Sipariş Tarihi</th>
-                                    <th>Sipariş Durumu</th>
-                                    <th>Sipariş Detayı</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var order in Model)
-                                {
-                                    <tr>
-                                        <td class="orderNumber">@order.OrderNumber</td>
-                                        <td>@order.TotalPrice ₺</td>
-                                        <td>@order.OrderDate</td>
-                                        <td>
-                                            @{
-                                                if (order.Status == OrderStatus.Received)
-                                                {
-                                                    <span class="badge badge-info">Alındı</span>
-                                                }
-                                                else if (order.Status == OrderStatus.Preparing)
-                                                {
-                                                    <span class="badge badge-warning">Hazırlanıyor</span>
-                                                }
-                                                else if (order.Status == OrderStatus.Cancelled)
-                                                {
-                                                    <span class="badge badge-danger">İptal Edildi</span>
-                                                }
-                                                else
-                                                {
-                                                    <span class="badge badge-success">Teslim Edildi</span>
-                                                }
-                                            }
-                                        </td>
-                                        <td>
-
-                                            <a asp-action="Invoice" asp-controller="Home" asp-area="Panel" asp-route-orderId="@order.Id" class="btn btn-sm btn-info">Detay</a>
-
-                                            <a asp-action="Update" asp-controller="AdminOrder" asp-area="Panel" asp-route-orderId="@order.Id" class="btn btn-sm btn-success">Güncelle</a>
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <span class="badge badge-danger">
+                        <h3>Herhangi bir sipariş yok!</h3>
+                    </span>
                 </div>
             </div>
         </div>
+    </section>
+}
+else
+{
+    <section class="content">
+        <div class="container-fluid">
 
-    </div>
-</section>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Siparişler</h3>
+
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm mb-2" style="width: 150px;">
+                                    <input type="text" id="table_search" class="form-control float-right" placeholder="Sipariş Numarası Ara" oninput="filterTable()">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap" id="orderTable">
+                                <thead>
+                                    <tr>
+                                        <th>Sipariş Numarası</th>
+                                        <th>Sipariş Tutarı</th>
+                                        <th>Sipariş Tarihi</th>
+                                        <th>Sipariş Durumu</th>
+                                        <th>Sipariş Detayı</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var order in Model)
+                                    {
+                                        <tr>
+                                            <td class="orderNumber">@order.OrderNumber</td>
+                                            <td>@order.TotalPrice ₺</td>
+                                            <td>@order.OrderDate</td>
+                                            <td>
+                                                @{
+                                                    if (order.Status == OrderStatus.Received)
+                                                    {
+                                                        <span class="badge badge-info">Alındı</span>
+                                                    }
+                                                    else if (order.Status == OrderStatus.Preparing)
+                                                    {
+                                                        <span class="badge badge-warning">Hazırlanıyor</span>
+                                                    }
+                                                    else if (order.Status == OrderStatus.Cancelled)
+                                                    {
+                                                        <span class="badge badge-danger">İptal Edildi</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge badge-success">Teslim Edildi</span>
+                                                    }
+                                                }
+                                            </td>
+                                            <td>
+
+                                                <a asp-action="Invoice" asp-controller="Home" asp-area="Panel" asp-route-orderId="@order.Id" class="btn btn-sm btn-info">Detay</a>
+
+                                                <a asp-action="Update" asp-controller="AdminOrder" asp-area="Panel" asp-route-orderId="@order.Id" class="btn btn-sm btn-success">Güncelle</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
 
-<script>
-       function filterTable() {
-        var input = document.getElementById("table_search").value.toLowerCase().trim();
-        var rows = document.querySelectorAll("#orderTable tbody tr");
+    <script>
+           function filterTable() {
+            var input = document.getElementById("table_search").value.toLowerCase().trim();
+            var rows = document.querySelectorAll("#orderTable tbody tr");
 
-        rows.forEach(function (row) {
-            var orderNumber = row.querySelector(".orderNumber").innerText.toLowerCase();
+            rows.forEach(function (row) {
+                var orderNumber = row.querySelector(".orderNumber").innerText.toLowerCase();
 
-            if (orderNumber.includes(input)) {
-                row.style.display = "";
-            } else {
-                row.style.display = "none";
-            }
-        });
-    }
-</script>
+                if (orderNumber.includes(input)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+}

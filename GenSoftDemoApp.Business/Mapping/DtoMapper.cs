@@ -30,7 +30,11 @@ namespace GenSoftDemoApp.API.Mapping
             CreateMap<Category, UpdateCategoryDto>().ReverseMap();
 
             CreateMap<AppUser, RegisterDto>().ReverseMap();
+            CreateMap<AppUser, UserDto>().ReverseMap();
+
             CreateMap<AppRole, CreateRoleDto>().ReverseMap();
+            CreateMap<AppRole, RoleDto>().ReverseMap();
+            CreateMap<AppRole, UpdateRoleDto>().ReverseMap();
         }
     }
 }

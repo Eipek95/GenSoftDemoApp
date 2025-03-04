@@ -22,6 +22,7 @@ namespace GenSoftDemoApp.Business.Concrete
             List<Order> orders = await _orderRepository.GetOrdersWithDetailByUserId(userId);
             if (!orders.Any())
                 return MyResponse<List<OrderDto>>.Fail(new ErrorDto("Sipariş Bulunamadı", false), 404);
+
             var map = _mapper.Map<List<OrderDto>>(orders);
             return MyResponse<List<OrderDto>>.Success(map, 200);
         }
